@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:poteu/page/filter_local_list_page.dart';
+import 'package:poteu/views/main_page/main_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -9,27 +9,16 @@ Future main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        // title: title,
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: MainPage(),
-      );
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        body: FilterLocalListPage(),
+        theme: ThemeData(primarySwatch: Colors.teal),
+        home: const MainPage(),
       );
 }

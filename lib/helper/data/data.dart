@@ -2,12 +2,31 @@ import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/helper/data/table/table.dart';
 
+List<Map<String, String>> getPars(String query) {
+  List<Map<String, String>> chList = [];
+  for (int i = 0; i < allChapters.length; i++) {
+    String chapterName = allChapters[i].name;
+    List<Paragraph> pars = allChapters[i].paragraphs;
+    for (int j = 0; j < pars.length; j++) {
+      for (int k = 0; k < pars[j].text.length; k++) {
+        final nameLower = pars[j].text[k].toLowerCase();
+        final searchLower = query.toLowerCase();
+        if (nameLower.contains(searchLower)) {
+          chList.add({chapterName: pars[j].text[k]});
+        }
+      }
+    }
+  }
+  return chList;
+}
+
 List<Paragraph> getPar() {
   List<Paragraph> parList = [];
   for (int i = 0; i < allChapters.length; i++) {
     List<Paragraph> pars = allChapters[i].paragraphs;
     for (int j = 0; j < pars.length; j++) {
       pars[j].text.join(".");
+      pars[j].chapter = i.toString();
       parList.add(pars[j]);
     }
   }

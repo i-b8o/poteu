@@ -5,5 +5,5 @@ class Chapter {
   final String num;
   final List<Paragraph> paragraphs;
 
-  Chapter(this.name, this.num, this.paragraphs);
+  Chapter(this.num, this.name, this.paragraphs);
 }
