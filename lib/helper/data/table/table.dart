@@ -1,7 +1,7 @@
-class Table {
+class ParagraphTable {
   final String name;
   final String num;
   final String img;
 
-  Table(this.name, this.num, this.img);
+  ParagraphTable(this.name, this.num, this.img);
 }

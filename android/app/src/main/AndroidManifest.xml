@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.poteu">
+    package="com.i_rm.poteu">
    <application
-        android:label="poteu"
-        android:icon="@mipmap/ic_launcher">
+        android:label="ПОТЭУ-903н-2021"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +37,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6302667653389164~7410116030"/>
     </application>
 </manifest>

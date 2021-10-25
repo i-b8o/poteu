@@ -1,4 +1,4 @@
-package com.example.poteu
+package com.i_rm.poteu
 
 import io.flutter.embedding.android.FlutterActivity
 

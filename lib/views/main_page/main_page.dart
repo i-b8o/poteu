@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/views/chapter_page/chapter_page.dart';
@@ -13,6 +16,20 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final BannerAd myBanner = BannerAd(
+    adUnitId: Platform.isAndroid
+        ? 'ca-app-pub-3940256099942544/2934735716'
+        : 'ca-app-pub-3940256099942544/2934735716',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+  @override
+  void initState() {
+    super.initState();
+    myBanner.load();
+  }
+
   Widget buildChapter(Chapter chapter) => GestureDetector(
         onTap: () {
           Navigator.push(
@@ -56,6 +73,15 @@ class _MainPageState extends State<MainPage> {
               },
             ),
           ),
+          Positioned(
+              bottom: 0.0,
+              child: Container(
+                height: 50.0,
+                width: 320.0,
+                child: AdWidget(
+                  ad: myBanner,
+                ),
+              ))
         ],
       ),
     );

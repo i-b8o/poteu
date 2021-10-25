@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
+import 'package:poteu/helper/data/table/table.dart';
 import 'package:poteu/views/filter_all_paragraphs_page/filter_all_paragraphs_page.dart';
+import 'package:poteu/views/main_page/main_page.dart';
 
 class ChapterPage extends StatefulWidget {
   const ChapterPage({
@@ -16,12 +21,49 @@ class ChapterPage extends StatefulWidget {
 }
 
 class _ChapterPageState extends State<ChapterPage> {
+  final BannerAd myBanner = BannerAd(
+    adUnitId: Platform.isAndroid
+        ? 'ca-app-pub-3940256099942544/2934735716'
+        : 'ca-app-pub-3940256099942544/2934735716',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
+  @override
+  void initState() {
+    super.initState();
+    myBanner.load();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Paragraph> paragraphs = widget.chapter.paragraphs;
 
     return Scaffold(
+      bottomNavigationBar: Container(
+        height: 50,
+        width: 320,
+        // padding: EdgeInsets.all(8.0),
+        child: Positioned(
+            bottom: 0.0,
+            child: Container(
+              height: 50.0,
+              width: 320.0,
+              child: AdWidget(
+                ad: myBanner,
+              ),
+            )),
+      ),
       appBar: AppBar(
+        leading: new IconButton(
+          icon: new Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MainPage()),
+            );
+          },
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -53,9 +95,7 @@ class _ChapterPageState extends State<ChapterPage> {
                     ),
                   ),
                   for (var p in paragraphs)
-                    ParagraphWidget(
-                      text: p.text,
-                    ),
+                    ParagraphWidget(text: p.text, tables: p.tables),
                   Container(
                     margin: const EdgeInsets.all(8.0),
                     child: Row(
@@ -100,7 +140,7 @@ class _ChapterPageState extends State<ChapterPage> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -112,11 +152,23 @@ class _ChapterPageState extends State<ChapterPage> {
 }
 
 class ParagraphWidget extends StatelessWidget {
-  const ParagraphWidget({Key? key, required this.text}) : super(key: key);
+  const ParagraphWidget({Key? key, required this.text, required this.tables})
+      : super(key: key);
   final List<String> text;
+  final List<ParagraphTable> tables;
 
   @override
   Widget build(BuildContext context) {
+    Container img = tables.isNotEmpty
+        ? Container(
+            child: Column(
+            children: [
+              Text(
+                  "${tables[0].num.isNotEmpty ? "Таблица" + tables[0].num : ""}"),
+              Image.asset("assets/images/${tables[0].img}.png"),
+            ],
+          ))
+        : Container();
     return Column(
       children: [
         for (var t in text)
@@ -125,7 +177,8 @@ class ParagraphWidget extends StatelessWidget {
               child: Text(
                 t,
                 style: const TextStyle(fontSize: 17.0),
-              ))
+              )),
+        img,
       ],
     );
   }
