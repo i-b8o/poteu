@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:poteu/helper/data/chapter/chapter.dart';
 
 class FiltersPageCardWidget extends StatelessWidget {
   const FiltersPageCardWidget({Key? key, required this.text}) : super(key: key);

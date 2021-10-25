@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poteu/helper/data/chapter/chapter.dart';
+import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/filter_all_paragraphs_page/filter_all_paragraphs_page.dart';
 
@@ -54,7 +55,52 @@ class _ChapterPageState extends State<ChapterPage> {
                   for (var p in paragraphs)
                     ParagraphWidget(
                       text: p.text,
-                    )
+                    ),
+                  Container(
+                    margin: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            String n = prevNum(widget.chapter.num);
+                            Chapter ch = getChapter(n);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChapterPage(
+                                        chapter: ch,
+                                      )),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.teal,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 2,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            String n = nextNum(widget.chapter.num);
+                            Chapter ch = getChapter(n);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ChapterPage(
+                                        chapter: ch,
+                                      )),
+                            );
+                          },
+                          child: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.teal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

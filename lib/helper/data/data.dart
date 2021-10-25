@@ -35,6 +35,28 @@ List<Paragraph> getPar() {
 
 final allParagraphs = getPar();
 
+String nextNum(String num) {
+  int n = int.parse(num);
+  n++;
+  return n.toString();
+}
+
+String prevNum(String num) {
+  int n = int.parse(num);
+  n--;
+  return n.toString();
+}
+
+Chapter getChapter(String num) {
+  Chapter chapter = allChapters[0];
+  for (int i = 0; i < allChapters.length; i++) {
+    if (allChapters[i].num == num) {
+      return allChapters[i];
+    }
+  }
+  return chapter;
+}
+
 final allChapters = <Chapter>[
   Chapter(
     '1',
