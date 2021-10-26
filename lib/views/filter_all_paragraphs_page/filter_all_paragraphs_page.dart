@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/chapter_page/chapter_page.dart';
@@ -16,10 +19,18 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   late List<Paragraph> paragraphs;
   String query = '';
 
+  final BannerAd myBanner = BannerAd(
+    adUnitId: Platform.isAndroid
+        ? 'ca-app-pub-3940256099942544/2934735716'
+        : 'ca-app-pub-3940256099942544/2934735716',
+    size: AdSize.banner,
+    request: AdRequest(),
+    listener: BannerAdListener(),
+  );
   @override
   void initState() {
     super.initState();
-
+    myBanner.load();
     paragraphs = allParagraphs;
   }
 
@@ -40,6 +51,16 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
 
                 return buildParagraph(paragraph);
               },
+            ),
+          ),
+          Positioned(
+            bottom: 0.0,
+            child: Container(
+              height: 50.0,
+              width: 320.0,
+              child: AdWidget(
+                ad: myBanner,
+              ),
             ),
           ),
         ],
