@@ -43,16 +43,20 @@ class _ChapterPageState extends State<ChapterPage> {
       bottomNavigationBar: Container(
         height: 50,
         width: 320,
-        // padding: EdgeInsets.all(8.0),
-        child: Positioned(
-            bottom: 0.0,
-            child: Container(
-              height: 50.0,
-              width: 320.0,
-              child: AdWidget(
-                ad: myBanner,
-              ),
-            )),
+        child: Stack(children: [
+          Positioned(
+              bottom: 0.0,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Container(
+                  height: 50.0,
+                  width: 320.0,
+                  child: AdWidget(
+                    ad: myBanner,
+                  ),
+                ),
+              ))
+        ]),
       ),
       appBar: AppBar(
         leading: new IconButton(

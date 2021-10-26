@@ -61,29 +61,34 @@ class _MainPageState extends State<MainPage> {
         ],
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: allChapters.length,
-              itemBuilder: (context, index) {
-                final chapter = allChapters[index];
+      body: Stack(children: [
+        Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: allChapters.length,
+                itemBuilder: (context, index) {
+                  final chapter = allChapters[index];
 
-                return buildChapter(chapter);
-              },
+                  return buildChapter(chapter);
+                },
+              ),
             ),
-          ),
-          Positioned(
-              bottom: 0.0,
+          ],
+        ),
+        Positioned(
+            bottom: 0.0,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
               child: Container(
                 height: 50.0,
                 width: 320.0,
                 child: AdWidget(
                   ad: myBanner,
                 ),
-              ))
-        ],
-      ),
+              ),
+            ))
+      ]),
     );
   }
 }

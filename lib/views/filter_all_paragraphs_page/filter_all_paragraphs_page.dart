@@ -41,30 +41,34 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
         title: buildSearch(),
         centerTitle: true,
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              itemCount: paragraphs.length,
-              itemBuilder: (context, index) {
-                final paragraph = paragraphs[index];
+      body: Stack(children: [
+        Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView.builder(
+                itemCount: paragraphs.length,
+                itemBuilder: (context, index) {
+                  final paragraph = paragraphs[index];
 
-                return buildParagraph(paragraph);
-              },
-            ),
-          ),
-          Positioned(
-            bottom: 0.0,
-            child: Container(
-              height: 50.0,
-              width: 320.0,
-              child: AdWidget(
-                ad: myBanner,
+                  return buildParagraph(paragraph);
+                },
               ),
             ),
-          ),
-        ],
-      ),
+          ],
+        ),
+        Positioned(
+            bottom: 0.0,
+            width: MediaQuery.of(context).size.width,
+            child: Center(
+              child: Container(
+                height: 50.0,
+                width: 320.0,
+                child: AdWidget(
+                  ad: myBanner,
+                ),
+              ),
+            ))
+      ]),
     );
   }
 
