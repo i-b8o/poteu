@@ -18,8 +18,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   final BannerAd myBanner = BannerAd(
     adUnitId: Platform.isAndroid
-        ? 'ca-app-pub-3940256099942544/2934735716'
-        : 'ca-app-pub-3940256099942544/2934735716',
+        ? 'ca-app-pub-6302667653389164/5522319293'
+        : 'ca-app-pub-6302667653389164/5522319293',
     size: AdSize.banner,
     request: AdRequest(),
     listener: BannerAdListener(),

@@ -21,8 +21,8 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
 
   final BannerAd myBanner = BannerAd(
     adUnitId: Platform.isAndroid
-        ? 'ca-app-pub-3940256099942544/2934735716'
-        : 'ca-app-pub-3940256099942544/2934735716',
+        ? 'ca-app-pub-6302667653389164/4693043652'
+        : 'ca-app-pub-6302667653389164/4693043652',
     size: AdSize.banner,
     request: AdRequest(),
     listener: BannerAdListener(),

@@ -23,8 +23,8 @@ class ChapterPage extends StatefulWidget {
 class _ChapterPageState extends State<ChapterPage> {
   final BannerAd myBanner = BannerAd(
     adUnitId: Platform.isAndroid
-        ? 'ca-app-pub-3940256099942544/2934735716'
-        : 'ca-app-pub-3940256099942544/2934735716',
+        ? 'ca-app-pub-6302667653389164/7036792500'
+        : 'ca-app-pub-6302667653389164/7036792500',
     size: AdSize.banner,
     request: AdRequest(),
     listener: BannerAdListener(),
