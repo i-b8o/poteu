@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.i_rm.poteu">
    <application
-        android:label="ПОТЭУ-903н-2021"
+        android:label="ПОТЭЭ-903н-2021"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"

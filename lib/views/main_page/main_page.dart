@@ -24,6 +24,7 @@ class _MainPageState extends State<MainPage> {
     request: AdRequest(),
     listener: BannerAdListener(),
   );
+
   @override
   void initState() {
     super.initState();

@@ -18,7 +18,6 @@ class FilterAllParagraphsPage extends StatefulWidget {
 class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   late List<Paragraph> paragraphs;
   String query = '';
-
   final BannerAd myBanner = BannerAd(
     adUnitId: Platform.isAndroid
         ? 'ca-app-pub-6302667653389164/4693043652'
@@ -27,6 +26,7 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
     request: AdRequest(),
     listener: BannerAdListener(),
   );
+
   @override
   void initState() {
     super.initState();

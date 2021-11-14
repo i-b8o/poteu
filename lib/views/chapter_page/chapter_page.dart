@@ -29,6 +29,7 @@ class _ChapterPageState extends State<ChapterPage> {
     request: AdRequest(),
     listener: BannerAdListener(),
   );
+
   @override
   void initState() {
     super.initState();
@@ -62,9 +63,10 @@ class _ChapterPageState extends State<ChapterPage> {
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const MainPage()),
+              (route) => false,
             );
           },
         ),
@@ -120,6 +122,7 @@ class _ChapterPageState extends State<ChapterPage> {
                           child: const Icon(
                             Icons.arrow_back,
                             color: Colors.teal,
+                            size: 30,
                           ),
                         ),
                         SizedBox(
@@ -140,6 +143,7 @@ class _ChapterPageState extends State<ChapterPage> {
                           child: const Icon(
                             Icons.arrow_forward,
                             color: Colors.teal,
+                            size: 30,
                           ),
                         ),
                       ],
