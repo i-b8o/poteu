@@ -16,7 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final BannerAd myBanner = BannerAd(
+  final BannerAd mainPageBanner = BannerAd(
     adUnitId: Platform.isAndroid
         ? 'ca-app-pub-6302667653389164/5522319293'
         : 'ca-app-pub-6302667653389164/5522319293',
@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    myBanner.load();
+    mainPageBanner.load();
   }
 
   Widget buildChapter(Chapter chapter) => GestureDetector(
@@ -85,7 +85,7 @@ class _MainPageState extends State<MainPage> {
                 height: 50.0,
                 width: 320.0,
                 child: AdWidget(
-                  ad: myBanner,
+                  ad: mainPageBanner,
                 ),
               ),
             ))

@@ -21,7 +21,7 @@ class ChapterPage extends StatefulWidget {
 }
 
 class _ChapterPageState extends State<ChapterPage> {
-  final BannerAd myBanner = BannerAd(
+  final BannerAd chapterBanner = BannerAd(
     adUnitId: Platform.isAndroid
         ? 'ca-app-pub-6302667653389164/7036792500'
         : 'ca-app-pub-6302667653389164/7036792500',
@@ -33,32 +33,15 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   void initState() {
     super.initState();
-    myBanner.load();
+    chapterBanner.load();
   }
 
   @override
   Widget build(BuildContext context) {
     List<Paragraph> paragraphs = widget.chapter.paragraphs;
-
+    print(chapterBanner.size.width);
+    print(chapterBanner.size.height);
     return Scaffold(
-      bottomNavigationBar: Container(
-        height: 50,
-        width: 320,
-        child: Stack(children: [
-          Positioned(
-              bottom: 0.0,
-              width: MediaQuery.of(context).size.width,
-              child: Center(
-                child: Container(
-                  height: 50.0,
-                  width: 320.0,
-                  child: AdWidget(
-                    ad: myBanner,
-                  ),
-                ),
-              ))
-        ]),
-      ),
       appBar: AppBar(
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back),
@@ -85,75 +68,84 @@ class _ChapterPageState extends State<ChapterPage> {
         title: const Text("ПОТЭУ-903н-2020"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: ListView(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      widget.chapter.name,
-                      style: const TextStyle(
-                          fontSize: 21.0, fontWeight: FontWeight.bold),
-                    ),
+      body: Stack(
+        children: <Widget>[
+          Expanded(
+            child: ListView(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    widget.chapter.name,
+                    style: const TextStyle(
+                        fontSize: 21.0, fontWeight: FontWeight.bold),
                   ),
-                  for (var p in paragraphs)
-                    ParagraphWidget(text: p.text, tables: p.tables),
-                  Container(
-                    margin: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            String n = prevNum(widget.chapter.num);
-                            Chapter ch = getChapter(n);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ChapterPage(
-                                        chapter: ch,
-                                      )),
-                            );
-                          },
-                          child: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.teal,
-                            size: 30,
-                          ),
+                ),
+                for (var p in paragraphs)
+                  ParagraphWidget(text: p.text, tables: p.tables),
+                Container(
+                  margin: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 70.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          String n = prevNum(widget.chapter.num);
+                          Chapter ch = getChapter(n);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChapterPage(
+                                      chapter: ch,
+                                    )),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.teal,
+                          size: 30,
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width / 2,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 2,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          String n = nextNum(widget.chapter.num);
+                          Chapter ch = getChapter(n);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChapterPage(
+                                      chapter: ch,
+                                    )),
+                          );
+                        },
+                        child: const Icon(
+                          Icons.arrow_forward,
+                          color: Colors.teal,
+                          size: 30,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            String n = nextNum(widget.chapter.num);
-                            Chapter ch = getChapter(n);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ChapterPage(
-                                        chapter: ch,
-                                      )),
-                            );
-                          },
-                          child: const Icon(
-                            Icons.arrow_forward,
-                            color: Colors.teal,
-                            size: 30,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Positioned(
+              bottom: 0.0,
+              width: MediaQuery.of(context).size.width,
+              child: Center(
+                child: Container(
+                  height: 50.0,
+                  width: 320.0,
+                  child: AdWidget(
+                    ad: chapterBanner,
+                  ),
+                ),
+              )),
+        ],
       ),
     );
   }
