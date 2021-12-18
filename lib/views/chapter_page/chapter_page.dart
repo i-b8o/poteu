@@ -1,13 +1,14 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/helper/data/table/table.dart';
 import 'package:poteu/views/filter_all_paragraphs_page/filter_all_paragraphs_page.dart';
 import 'package:poteu/views/main_page/main_page.dart';
+import 'package:unity_ads_plugin/unity_ads.dart';
 
 class ChapterPage extends StatefulWidget {
   const ChapterPage({
@@ -21,26 +22,18 @@ class ChapterPage extends StatefulWidget {
 }
 
 class _ChapterPageState extends State<ChapterPage> {
-  final BannerAd chapterBanner = BannerAd(
-    adUnitId: Platform.isAndroid
-        ? 'ca-app-pub-6302667653389164/7036792500'
-        : 'ca-app-pub-6302667653389164/7036792500',
-    size: AdSize.banner,
-    request: AdRequest(),
-    listener: BannerAdListener(),
-  );
-
   @override
   void initState() {
     super.initState();
-    chapterBanner.load();
+    UnityAds.init(
+      gameId: "4512507",
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     List<Paragraph> paragraphs = widget.chapter.paragraphs;
-    print(chapterBanner.size.width);
-    print(chapterBanner.size.height);
+
     return Scaffold(
       bottomNavigationBar: Container(
         height: 50,
@@ -53,8 +46,8 @@ class _ChapterPageState extends State<ChapterPage> {
                 child: Container(
                   height: 50.0,
                   width: 320.0,
-                  child: AdWidget(
-                    ad: chapterBanner,
+                  child: UnityBannerAd(
+                    placementId: "Banner_Android",
                   ),
                 ),
               ))

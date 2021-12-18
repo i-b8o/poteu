@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/chapter_page/chapter_page.dart';
 import 'package:poteu/views/filters_page_card_widget%20copy/filters_page_card_widget.dart';
 import 'package:poteu/widget/search_widget.dart';
+import 'package:unity_ads_plugin/unity_ads.dart';
 
 class FilterAllParagraphsPage extends StatefulWidget {
   const FilterAllParagraphsPage({Key? key}) : super(key: key);
@@ -18,19 +19,14 @@ class FilterAllParagraphsPage extends StatefulWidget {
 class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   late List<Paragraph> paragraphs;
   String query = '';
-  final BannerAd filterBanner = BannerAd(
-    adUnitId: Platform.isAndroid
-        ? 'ca-app-pub-6302667653389164/4693043652'
-        : 'ca-app-pub-6302667653389164/4693043652',
-    size: AdSize.banner,
-    request: AdRequest(),
-    listener: BannerAdListener(),
-  );
 
   @override
   void initState() {
     super.initState();
-    filterBanner.load();
+    UnityAds.init(
+      gameId: "4512507",
+    );
+
     paragraphs = allParagraphs;
   }
 
@@ -63,8 +59,8 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
               child: Container(
                 height: 50.0,
                 width: 320.0,
-                child: AdWidget(
-                  ad: filterBanner,
+                child: UnityBannerAd(
+                  placementId: "Banner_Android",
                 ),
               ),
             ))
