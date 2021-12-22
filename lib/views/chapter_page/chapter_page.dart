@@ -3,6 +3,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/data.dart';
@@ -184,6 +185,7 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
     List<FocusedMenuItem> _menuItems = !_playing
         ? <FocusedMenuItem>[
             FocusedMenuItem(
+                trailingIcon: Icon(MdiIcons.volumeHigh),
                 title: Text("Прослушать параграф"),
                 onPressed: () {
                   _speak();
@@ -195,6 +197,7 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
           ]
         : <FocusedMenuItem>[
             FocusedMenuItem(
+                trailingIcon: Icon(MdiIcons.stopCircle),
                 title: Text("Остановить"),
                 onPressed: () {
                   _stop();
