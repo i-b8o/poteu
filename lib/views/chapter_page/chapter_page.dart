@@ -1,6 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/data.dart';
@@ -25,9 +25,7 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    UnityAds.init(gameId: "4512507", testMode: true);
   }
 
   @override
@@ -174,12 +172,22 @@ class ParagraphWidget extends StatelessWidget {
     return Column(
       children: [
         for (var t in text)
-          Container(
-              margin: const EdgeInsets.all(8.0),
-              child: Text(
-                t,
-                style: const TextStyle(fontSize: 17.0),
-              )),
+          FocusedMenuHolder(
+            openWithTap: true,
+            onPressed: () {},
+            menuItems: <FocusedMenuItem>[
+              FocusedMenuItem(
+                  title: Text("Прослушать параграф"), onPressed: () {}),
+              FocusedMenuItem(
+                  title: Text("Редактировать параграф"), onPressed: () {}),
+            ],
+            child: Container(
+                margin: const EdgeInsets.all(8.0),
+                child: Text(
+                  t,
+                  style: const TextStyle(fontSize: 17.0),
+                )),
+          ),
         img,
       ],
     );

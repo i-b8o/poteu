@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'package:poteu/helper/data/data.dart';
@@ -23,9 +21,7 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    UnityAds.init(gameId: "4512507", testMode: true);
 
     paragraphs = allParagraphs;
   }

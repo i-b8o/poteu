@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/data.dart';
@@ -19,9 +17,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    UnityAds.init(gameId: "4512507", testMode: true);
   }
 
   Widget buildChapter(Chapter chapter) => GestureDetector(
