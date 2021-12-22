@@ -179,7 +179,9 @@ class ParagraphWidget extends StatelessWidget {
               FocusedMenuItem(
                   title: Text("Прослушать параграф"), onPressed: () {}),
               FocusedMenuItem(
-                  title: Text("Редактировать параграф"), onPressed: () {}),
+                  trailingIcon: Icon(Icons.edit),
+                  title: Text("Редактировать параграф"),
+                  onPressed: () {}),
             ],
             child: Container(
                 margin: const EdgeInsets.all(8.0),
