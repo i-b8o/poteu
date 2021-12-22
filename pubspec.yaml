@@ -31,6 +31,8 @@ dependencies:
     sdk: flutter
   unity_ads_plugin: ^0.2.4
   focused_menu: ^1.0.5
+  flutter_tts: ^3.2.4
+
 
 
 
