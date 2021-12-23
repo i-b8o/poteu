@@ -3,15 +3,14 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:poteu/helper/data/table/table.dart';
+import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/chapter_page/paragraph_edit/paragraph_edit.dart';
 
 class ParagraphWidget extends StatefulWidget {
-  ParagraphWidget({Key? key, required this.text, required this.tables})
+  ParagraphWidget({Key? key, required this.chapterNum, required this.paragraph})
       : super(key: key);
-  final List<String> text;
-  final List<ParagraphTable> tables;
-
+  final Paragraph paragraph;
+  final String chapterNum;
   @override
   State<ParagraphWidget> createState() => _ParagraphWidgetState();
 }
@@ -24,7 +23,8 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
   Widget build(BuildContext context) {
     Future _speak() async {
       await flutterTts.setLanguage("ru-RU");
-      var result = await flutterTts.speak(this.widget.text.toString());
+      var result =
+          await flutterTts.speak(this.widget.paragraph.text.toString());
       if (result == 1) setState(() => _playing = true);
     }
 
@@ -49,8 +49,11 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            ParagraphEdit(text: _pressedText)),
+                        builder: (context) => ParagraphEdit(
+                              text: _pressedText,
+                              chapterNum: this.widget.chapterNum,
+                              paragraph: this.widget.paragraph,
+                            )),
                   );
                 }),
           ]
@@ -63,19 +66,20 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
                 }),
           ];
 
-    Container img = widget.tables.isNotEmpty
+    Container img = widget.paragraph.tables.isNotEmpty
         ? Container(
             child: Column(
             children: [
               Text(
-                  "${widget.tables[0].num.isNotEmpty ? "Таблица" + widget.tables[0].num : ""}"),
-              Image.asset("assets/images/${widget.tables[0].img}.png"),
+                  "${widget.paragraph.tables[0].num.isNotEmpty ? "Таблица" + widget.paragraph.tables[0].num : ""}"),
+              Image.asset(
+                  "assets/images/${widget.paragraph.tables[0].img}.png"),
             ],
           ))
         : Container();
     return Column(
       children: [
-        for (var t in widget.text)
+        for (var t in widget.paragraph.text)
           FocusedMenuHolder(
             animateMenuItems: true,
             openWithTap: true,

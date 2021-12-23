@@ -57,7 +57,20 @@ Chapter getChapter(String num) {
   return chapter;
 }
 
-final allChapters = <Chapter>[
+void editParagraph(String _chapterNum, Paragraph _paragraph, String _oldText,
+    String _newText) {
+  final _chapterIndex = allChapters.indexWhere((ch) => ch.num == _chapterNum);
+  int _paragraphIndex =
+      allChapters[_chapterIndex].paragraphs.indexOf(_paragraph);
+  int _index = allChapters[_chapterIndex]
+      .paragraphs[_paragraphIndex]
+      .text
+      .indexOf(_oldText);
+  allChapters[_chapterIndex].paragraphs[_paragraphIndex].text[_index] =
+      _newText;
+}
+
+List<Chapter> allChapters = <Chapter>[
   Chapter(
     '1',
     'I. Общие положения',

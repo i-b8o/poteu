@@ -90,7 +90,10 @@ class _ChapterPageState extends State<ChapterPage> {
                     ),
                   ),
                   for (var p in paragraphs)
-                    ParagraphWidget(text: p.text, tables: p.tables),
+                    ParagraphWidget(
+                      paragraph: p,
+                      chapterNum: widget.chapter.num,
+                    ),
                   Container(
                     margin: const EdgeInsets.all(8.0),
                     child: Row(
