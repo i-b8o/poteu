@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:poteu/bloc/bloc.dart';
 import 'package:poteu/helper/data/chapter/chapter.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/helper/data/table/table.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<Map<String, String>> getPars(String query) {
   List<Map<String, String>> chList = [];
@@ -57,8 +61,8 @@ Chapter getChapter(String num) {
   return chapter;
 }
 
-void editParagraph(String _chapterNum, Paragraph _paragraph, String _oldText,
-    String _newText) {
+Future<void> editParagraph(String _chapterNum, Paragraph _paragraph,
+    String _oldText, String _newText) async {
   final _chapterIndex = allChapters.indexWhere((ch) => ch.num == _chapterNum);
   int _paragraphIndex =
       allChapters[_chapterIndex].paragraphs.indexOf(_paragraph);
@@ -67,6 +71,23 @@ void editParagraph(String _chapterNum, Paragraph _paragraph, String _oldText,
       .text
       .indexOf(_oldText);
   allChapters[_chapterIndex].paragraphs[_paragraphIndex].text[_index] =
+      _newText;
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  print("edit1");
+  List<String> _edeitedList = prefs.getStringList('edited') ?? [];
+  Edited _e = Edited(
+      chapterNum: _chapterIndex,
+      paragraphNum: _paragraphIndex,
+      oldTextNum: _index,
+      newText: _newText);
+  _edeitedList.add(jsonEncode(_e.toJson()));
+  prefs.setStringList('edited', _edeitedList);
+  print("edit2");
+}
+
+void editParagraphFromSP(
+    int _chapterNum, int _paragraphNum, int _oldTextNum, String _newText) {
+  allChapters[_chapterNum].paragraphs[_paragraphNum].text[_oldTextNum] =
       _newText;
 }
 

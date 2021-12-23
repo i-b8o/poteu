@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:poteu/bloc/bloc.dart';
 
 import 'package:poteu/views/main_page/main_page.dart';
+import 'package:provider/provider.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,7 +13,7 @@ Future main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const MyApp());
+  runApp(Provider(create: (_) => Bloc(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
