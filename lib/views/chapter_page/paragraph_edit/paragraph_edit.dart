@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/filter_all_paragraphs_page/filter_all_paragraphs_page.dart';
-import 'package:poteu/views/main_page/main_page.dart';
 
 class ParagraphEdit extends StatelessWidget {
   ParagraphEdit(
@@ -13,7 +12,7 @@ class ParagraphEdit extends StatelessWidget {
       : super(key: key);
   final String text, chapterNum;
   final Paragraph paragraph;
-  TextEditingController _controller = new TextEditingController();
+  final TextEditingController _controller = new TextEditingController();
   String _newText = "";
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class ParagraphEdit extends StatelessWidget {
               maxLines: null,
               initialValue: text,
               onChanged: (value) => _newText = value),
-          new RaisedButton(
+          new ElevatedButton(
             onPressed: () {
               editParagraph(chapterNum, paragraph, text, _newText);
               Navigator.pop(context);

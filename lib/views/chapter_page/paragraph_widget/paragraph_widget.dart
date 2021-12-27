@@ -3,8 +3,10 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:poteu/bloc/bloc.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/chapter_page/paragraph_edit/paragraph_edit.dart';
+import 'package:provider/provider.dart';
 
 class ParagraphWidget extends StatefulWidget {
   ParagraphWidget({Key? key, required this.chapterNum, required this.paragraph})
@@ -16,55 +18,42 @@ class ParagraphWidget extends StatefulWidget {
 }
 
 class _ParagraphWidgetState extends State<ParagraphWidget> {
-  final FlutterTts flutterTts = FlutterTts();
-  bool _playing = false;
   String _pressedText = "";
   @override
   Widget build(BuildContext context) {
-    Future _speak() async {
-      await flutterTts.setLanguage("ru-RU");
-      var result =
-          await flutterTts.speak(this.widget.paragraph.text.toString());
-      if (result == 1) setState(() => _playing = true);
+    List<FocusedMenuItem> _menuItems(Bloc _bloc, bool _playing) {
+      return !_playing
+          ? <FocusedMenuItem>[
+              FocusedMenuItem(
+                  trailingIcon: Icon(MdiIcons.volumeHigh),
+                  title: Text("Прослушать параграф"),
+                  onPressed: () {
+                    _bloc.speak(this.widget.paragraph.text.toString());
+                  }),
+              FocusedMenuItem(
+                  trailingIcon: Icon(Icons.edit),
+                  title: Text("Редактировать параграф"),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ParagraphEdit(
+                                text: _pressedText,
+                                chapterNum: this.widget.chapterNum,
+                                paragraph: this.widget.paragraph,
+                              )),
+                    );
+                  }),
+            ]
+          : <FocusedMenuItem>[
+              FocusedMenuItem(
+                  trailingIcon: Icon(MdiIcons.stopCircle),
+                  title: Text("Остановить"),
+                  onPressed: () {
+                    _bloc.stop();
+                  }),
+            ];
     }
-
-    Future _stop() async {
-      flutterTts.stop();
-
-      setState(() => _playing = false);
-    }
-
-    List<FocusedMenuItem> _menuItems = !_playing
-        ? <FocusedMenuItem>[
-            FocusedMenuItem(
-                trailingIcon: Icon(MdiIcons.volumeHigh),
-                title: Text("Прослушать параграф"),
-                onPressed: () {
-                  _speak();
-                }),
-            FocusedMenuItem(
-                trailingIcon: Icon(Icons.edit),
-                title: Text("Редактировать параграф"),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ParagraphEdit(
-                              text: _pressedText,
-                              chapterNum: this.widget.chapterNum,
-                              paragraph: this.widget.paragraph,
-                            )),
-                  );
-                }),
-          ]
-        : <FocusedMenuItem>[
-            FocusedMenuItem(
-                trailingIcon: Icon(MdiIcons.stopCircle),
-                title: Text("Остановить"),
-                onPressed: () {
-                  _stop();
-                }),
-          ];
 
     Container img = widget.paragraph.tables.isNotEmpty
         ? Container(
@@ -77,25 +66,35 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
             ],
           ))
         : Container();
-    return Column(
-      children: [
-        for (var t in widget.paragraph.text)
-          FocusedMenuHolder(
-            animateMenuItems: true,
-            openWithTap: true,
-            onPressed: () {
-              _pressedText = t;
-            },
-            menuItems: _menuItems,
-            child: Container(
-                margin: const EdgeInsets.all(8.0),
-                child: Text(
-                  t,
-                  style: const TextStyle(fontSize: 17.0),
-                )),
-          ),
-        img,
-      ],
-    );
+    return Consumer<Bloc>(builder: (context, _bloc, _) {
+      return Column(
+        children: [
+          for (var t in widget.paragraph.text)
+            StreamBuilder(
+                stream: _bloc.playingStateController,
+                builder: (context, snapshot) {
+                  bool _playing = false;
+                  if (snapshot.hasData) {
+                    _playing = snapshot.data as bool;
+                  }
+                  return FocusedMenuHolder(
+                    animateMenuItems: true,
+                    openWithTap: true,
+                    onPressed: () {
+                      _pressedText = t;
+                    },
+                    menuItems: _menuItems(_bloc, _playing),
+                    child: Container(
+                        margin: const EdgeInsets.all(8.0),
+                        child: Text(
+                          t,
+                          style: const TextStyle(fontSize: 17.0),
+                        )),
+                  );
+                }),
+          img,
+        ],
+      );
+    });
   }
 }
