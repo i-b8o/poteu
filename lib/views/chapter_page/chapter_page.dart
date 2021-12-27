@@ -24,32 +24,17 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(gameId: "4512507", testMode: true);
+    UnityAds.init(
+      gameId: "4512507",
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    double _width = MediaQuery.of(context).size.width;
     List<Paragraph> paragraphs = widget.chapter.paragraphs;
     return Consumer<Bloc>(builder: (context, _bloc, _) {
       return Scaffold(
-        bottomNavigationBar: Container(
-          height: 50,
-          width: 320,
-          child: Stack(children: [
-            Positioned(
-                bottom: 0.0,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Container(
-                    height: 50.0,
-                    width: 320.0,
-                    child: UnityBannerAd(
-                      placementId: "Banner_Android",
-                    ),
-                  ),
-                ))
-          ]),
-        ),
         appBar: AppBar(
           leading: new IconButton(
             icon: new Icon(Icons.arrow_back),
@@ -77,9 +62,8 @@ class _ChapterPageState extends State<ChapterPage> {
           title: const Text("ПОТЭУ-903н-2020"),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
+        body: Stack(children: [
+          Column(
             children: <Widget>[
               Expanded(
                 child: ListView(
@@ -149,7 +133,19 @@ class _ChapterPageState extends State<ChapterPage> {
               ),
             ],
           ),
-        ),
+          Positioned(
+              bottom: 0.0,
+              left: (_width - 320) / 2,
+              child: Center(
+                child: Container(
+                  height: 50.0,
+                  width: 320.0,
+                  child: UnityBannerAd(
+                    placementId: "chapter",
+                  ),
+                ),
+              )),
+        ]),
       );
     });
   }

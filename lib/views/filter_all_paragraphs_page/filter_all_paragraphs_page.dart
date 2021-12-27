@@ -21,7 +21,9 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(gameId: "4512507", testMode: true);
+    UnityAds.init(
+      gameId: "4512507",
+    );
 
     paragraphs = allParagraphs;
   }
@@ -56,7 +58,7 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
                 height: 50.0,
                 width: 320.0,
                 child: UnityBannerAd(
-                  placementId: "Banner_Android",
+                  placementId: "filter",
                 ),
               ),
             ))
