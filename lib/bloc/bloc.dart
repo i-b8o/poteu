@@ -100,13 +100,11 @@ class Bloc {
       }
     });
     flutterTts.setStartHandler(() {
-      print("START HANDLER");
       _playing = true;
       playingStateController.sink.add(_playing);
     });
 
     flutterTts.setCompletionHandler(() {
-      print("COMPLITED HANDLER");
       _playing = false;
       playingStateController.sink.add(_playing);
     });
