@@ -21,7 +21,9 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(gameId: "4512507", testMode: true);
+    UnityAds.init(
+      gameId: "4512507",
+    );
 
     paragraphs = allParagraphs;
   }

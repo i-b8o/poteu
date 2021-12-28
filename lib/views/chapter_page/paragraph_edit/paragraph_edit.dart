@@ -12,7 +12,7 @@ class ParagraphEdit extends StatelessWidget {
       : super(key: key);
   final String text, chapterNum;
   final Paragraph paragraph;
-  final TextEditingController _controller = new TextEditingController();
+
   String _newText = "";
   @override
   Widget build(BuildContext context) {
