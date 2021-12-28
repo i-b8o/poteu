@@ -19,9 +19,7 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    UnityAds.init(gameId: "4512507", testMode: true);
   }
 
   Widget buildChapter(Chapter chapter) => GestureDetector(

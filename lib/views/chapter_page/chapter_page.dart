@@ -24,9 +24,7 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    UnityAds.init(gameId: "4512507", testMode: true);
   }
 
   @override
@@ -82,7 +80,7 @@ class _ChapterPageState extends State<ChapterPage> {
                         chapterNum: widget.chapter.num,
                       ),
                     Container(
-                      margin: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 60.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
