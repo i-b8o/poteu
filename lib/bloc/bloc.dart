@@ -45,34 +45,71 @@ class StopSpeechEvent extends TTSEvent {}
 
 class Bloc {
   bool _playing = false;
+  // rate
+  late double _rate; //0.0-1.0
+  double get rate => _rate * 100;
+  final __rateController = BehaviorSubject<double>();
+  Stream<double> get rateStream => __rateController.stream;
+  // pitch
+  late double _pitch; //0.5-2.0
+  double get pitch => (_pitch - 0.5) * 100 / 1.5;
+  final __pitchController = BehaviorSubject<double>();
+  Stream<double> get pitchStream => __pitchController.stream;
 
   final playingStateController = BehaviorSubject<bool>();
-  // StreamSink<bool> get _inPlaying => _playingStateController.sink;
-  // Stream<bool> get playing => _playingStateController.stream;
-  // final _playingEventController = StreamController<TTSEvent>();
-  // Sink<TTSEvent> get _playingEventSink => _playingEventController.sink;
 
   final FlutterTts flutterTts = FlutterTts();
   Future<SharedPreferences> prefs = SharedPreferences.getInstance();
   List<String> _editedParagraphs = [];
 
-  // flutterTts.setStartHandler(() {
-  //   setState(() {
-  //     isPlaying = true;
-  //   });
-  // });
+  Future increaseRate() async {
+    if (_rate > 1.99) {
+      return;
+    }
+    _rate = _rate + 0.01;
+    await flutterTts.setSpeechRate(_rate);
+    __rateController.sink.add(_rate);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('rate', _rate);
+  }
 
-  // flutterTts.setCompletionHandler(() {
-  //   setState(() {
-  //     isPlaying = false;
-  //   });
-  // });
+  Future decreaseRate() async {
+    if (_rate < 0.01) {
+      return;
+    }
+    _rate = _rate - 0.01;
+    await flutterTts.setSpeechRate(_rate);
+    __rateController.sink.add(_rate);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('rate', _rate);
+  }
+
+  Future increasePitch() async {
+    if (_pitch > 1.99) {
+      return;
+    }
+    _pitch = _pitch + 0.01;
+    await flutterTts.setPitch(_pitch);
+    __pitchController.sink.add(_pitch);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('pitch', _pitch);
+  }
+
+  Future decreasePitch() async {
+    if (_pitch < 0.51) {
+      return;
+    }
+    _pitch = _pitch - 0.01;
+    await flutterTts.setPitch(_pitch);
+    __pitchController.sink.add(_pitch);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setDouble('pitch', _pitch);
+  }
 
   Future speak(String text) async {
     await flutterTts.setLanguage("ru-RU");
     var result = await flutterTts.speak(text);
     if (result == 1) _playing = true;
-    print("RESULT: " + result);
     playingStateController.sink.add(_playing);
   }
 
@@ -84,7 +121,7 @@ class Bloc {
   }
 
   Bloc() {
-    prefs.then((value) {
+    prefs.then((value) async {
       if (value.get('edited') != null) {
         _editedParagraphs = value.getStringList('edited') ?? [];
         if (_editedParagraphs.length > 0) {
@@ -98,7 +135,20 @@ class Bloc {
       } else {
         _editedParagraphs = [];
       }
+      if (value.get('rate') != null) {
+        _rate = value.getDouble('rate') ?? 0.5;
+      } else {
+        _rate = 0.5;
+      }
+      await flutterTts.setSpeechRate(_rate);
+      if (value.get('pitch') != null) {
+        _pitch = value.getDouble('pitch') ?? 0.5;
+      } else {
+        _pitch = 1.0;
+      }
+      await flutterTts.setPitch(_pitch);
     });
+
     flutterTts.setStartHandler(() {
       _playing = true;
       playingStateController.sink.add(_playing);

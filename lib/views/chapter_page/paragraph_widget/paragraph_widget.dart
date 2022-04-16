@@ -6,6 +6,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:poteu/bloc/bloc.dart';
 import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/chapter_page/paragraph_edit/paragraph_edit.dart';
+import 'package:poteu/widget/pitch_widget.dart';
+import 'package:poteu/widget/rate_widget.dart';
 import 'package:provider/provider.dart';
 
 class ParagraphWidget extends StatefulWidget {
@@ -25,12 +27,6 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
       return !_playing
           ? <FocusedMenuItem>[
               FocusedMenuItem(
-                  trailingIcon: Icon(MdiIcons.volumeHigh),
-                  title: Text("Прослушать параграф"),
-                  onPressed: () {
-                    _bloc.speak(this.widget.paragraph.text.toString());
-                  }),
-              FocusedMenuItem(
                   trailingIcon: Icon(Icons.edit),
                   title: Text("Редактировать параграф"),
                   onPressed: () {
@@ -42,6 +38,53 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
                                 chapterNum: this.widget.chapterNum,
                                 paragraph: this.widget.paragraph,
                               )),
+                    );
+                  }),
+              FocusedMenuItem(
+                  trailingIcon: Icon(MdiIcons.volumeHigh),
+                  title: Text("Прослушать параграф"),
+                  onPressed: () {
+                    _bloc.speak(this.widget.paragraph.text.toString());
+                  }),
+              FocusedMenuItem(
+                  trailingIcon: Icon(Icons.settings),
+                  title: Text("Настройка"),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return AlertDialog(
+                              title: Text("Воспроизведение"),
+                              actions: [
+                                Column(
+                                  children: [
+                                    RateWidget(),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    PitchWidget(),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.teal)),
+                                  child: TextButton(
+                                      onPressed: () {
+                                        _bloc.stop();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text('Ok')),
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      },
                     );
                   }),
             ]
