@@ -6,7 +6,7 @@ import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/filter_all_paragraphs_page/filter_all_paragraphs_page.dart';
 import 'package:poteu/views/main_page/main_page.dart';
 import 'package:provider/provider.dart';
-import 'package:unity_ads_plugin/unity_ads.dart';
+
 import 'paragraph_widget/paragraph_widget.dart';
 
 class ChapterPage extends StatefulWidget {
@@ -24,9 +24,9 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    // UnityAds.init(
+    //   gameId: "4512507",
+    // );
   }
 
   @override
@@ -143,18 +143,18 @@ class _ChapterPageState extends State<ChapterPage> {
                 ),
               ],
             ),
-            Positioned(
-                bottom: 0.0,
-                left: (_width - 320) / 2,
-                child: Center(
-                  child: Container(
-                    height: 50.0,
-                    width: 320.0,
-                    child: UnityBannerAd(
-                      placementId: "chapter",
-                    ),
-                  ),
-                )),
+            // Positioned(
+            //     bottom: 0.0,
+            //     left: (_width - 320) / 2,
+            //     child: Center(
+            //       child: Container(
+            //         height: 50.0,
+            //         width: 320.0,
+            //         child: UnityBannerAd(
+            //           placementId: "chapter",
+            //         ),
+            //       ),
+            //     )),
           ]),
         ),
       );

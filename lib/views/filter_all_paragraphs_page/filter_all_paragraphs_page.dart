@@ -5,7 +5,6 @@ import 'package:poteu/helper/data/paragraph/paragraph.dart';
 import 'package:poteu/views/chapter_page/chapter_page.dart';
 import 'package:poteu/views/filters_page_card_widget%20copy/filters_page_card_widget.dart';
 import 'package:poteu/widget/search_widget.dart';
-import 'package:unity_ads_plugin/unity_ads.dart';
 
 class FilterAllParagraphsPage extends StatefulWidget {
   const FilterAllParagraphsPage({Key? key}) : super(key: key);
@@ -21,9 +20,9 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    // UnityAds.init(
+    //   gameId: "4512507",
+    // );
 
     paragraphs = allParagraphs;
   }
@@ -50,18 +49,18 @@ class FilterAllParagraphsPageState extends State<FilterAllParagraphsPage> {
             ),
           ],
         ),
-        Positioned(
-            bottom: 0.0,
-            width: MediaQuery.of(context).size.width,
-            child: Center(
-              child: Container(
-                height: 50.0,
-                width: 320.0,
-                child: UnityBannerAd(
-                  placementId: "filter",
-                ),
-              ),
-            ))
+        // Positioned(
+        //     bottom: 0.0,
+        //     width: MediaQuery.of(context).size.width,
+        //     child: Center(
+        //       child: Container(
+        //         height: 50.0,
+        //         width: 320.0,
+        //         child: UnityBannerAd(
+        //           placementId: "filter",
+        //         ),
+        //       ),
+        //     ))
       ]),
     );
   }

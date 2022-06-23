@@ -5,7 +5,7 @@ import 'package:poteu/helper/data/data.dart';
 import 'package:poteu/views/chapter_page/chapter_page.dart';
 import 'package:poteu/views/filter_all_paragraphs_page/filter_all_paragraphs_page.dart';
 import 'package:provider/provider.dart';
-import 'package:unity_ads_plugin/unity_ads.dart';
+
 import 'main_page_card_widget/main_page_card_widget.dart';
 
 class MainPage extends StatefulWidget {
@@ -19,9 +19,9 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    UnityAds.init(
-      gameId: "4512507",
-    );
+    // UnityAds.init(
+    //   gameId: "4512507",
+    // );
   }
 
   Widget buildChapter(Chapter chapter) => GestureDetector(
@@ -71,18 +71,18 @@ class _MainPageState extends State<MainPage> {
                 ),
               ],
             ),
-            Positioned(
-                bottom: 0.0,
-                width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Container(
-                    height: 50.0,
-                    width: 320.0,
-                    child: UnityBannerAd(
-                      placementId: "main",
-                    ),
-                  ),
-                ))
+            // Positioned(
+            //     bottom: 0.0,
+            //     width: MediaQuery.of(context).size.width,
+            //     child: Center(
+            //       child: Container(
+            //         height: 50.0,
+            //         width: 320.0,
+            //         child: UnityBannerAd(
+            //           placementId: "main",
+            //         ),
+            //       ),
+            //     ))
           ]);
         }));
   }

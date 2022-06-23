@@ -15,8 +15,7 @@ class MainPageCardWidget extends StatelessWidget {
       ),
       child: Container(
           alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.all(8.0),
-          height: MediaQuery.of(context).size.height / 8,
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
           child: Text(
             chapter.name,
             style: const TextStyle(
