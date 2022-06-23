@@ -6,7 +6,7 @@ import 'package:poteu/views/chapter_page/chapter_page.dart';
 
 import 'package:poteu/widget/search_widget.dart';
 
-import '../filters_page_card_widget/filters_page_card_widget.dart';
+import 'filters_page_card_widget/filters_page_card_widget.dart';
 
 class FilterAllParagraphsPage extends StatefulWidget {
   const FilterAllParagraphsPage({Key? key}) : super(key: key);
