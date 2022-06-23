@@ -22,16 +22,7 @@ class ChapterPage extends StatefulWidget {
 
 class _ChapterPageState extends State<ChapterPage> {
   @override
-  void initState() {
-    super.initState();
-    // UnityAds.init(
-    //   gameId: "4512507",
-    // );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    double _width = MediaQuery.of(context).size.width;
     List<Paragraph> paragraphs = widget.chapter.paragraphs;
     return Consumer<Bloc>(builder: (context, _bloc, _) {
       return WillPopScope(
