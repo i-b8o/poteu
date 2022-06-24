@@ -1,4 +1,4 @@
-import 'models/edited.dart';
+import 'models/models.dart';
 
 abstract class PoteuApi {
   const PoteuApi();
@@ -12,8 +12,8 @@ abstract class PoteuApi {
   Future<void> saveEdited(Edited edited);
 
   /// Provides a settings for TTS.
-  Future<TTSSettings> getTTSSettings();
+  Future<TtsSettings> getTTSSettings();
 
   /// Saves a [TTSSettings].
-  Future<void> saveTTSSettings(TTSSettings settings);
+  Future<void> saveTTSSettings(TtsSettings settings);
 }

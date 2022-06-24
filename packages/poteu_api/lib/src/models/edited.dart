@@ -19,10 +19,10 @@ part 'edited.g.dart';
 @JsonSerializable()
 class Edited extends Equatable {
   Edited({
-    required int this.chapterNum,
-    required int this.paragraphNum,
-    required int this.oldTextNum,
-    required String this.newText,
+    required this.chapterNum,
+    required this.paragraphNum,
+    required this.oldTextNum,
+    required this.newText,
   });
 
   // The number of the chapter to edit
