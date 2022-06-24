@@ -13,11 +13,11 @@ Future main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(Provider(create: (_) => Bloc(), child: const MyApp()));
+  runApp(Provider(create: (_) => Bloc(), child: const App()));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp(

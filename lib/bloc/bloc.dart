@@ -37,12 +37,6 @@ class Edited {
   }
 }
 
-abstract class TTSEvent {}
-
-class StartSpeechEvent extends TTSEvent {}
-
-class StopSpeechEvent extends TTSEvent {}
-
 class Bloc {
   bool _playing = false;
   // rate
