@@ -1,28 +1,51 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:poteu/bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:local_storage_poteu_api/local_storage_poteu_api.dart';
 
-import 'package:poteu/views/main_page/main_page.dart';
+import 'package:poteu_local_storage_repository/poteu_local_storage_repository.dart';
+import 'bloc/bloc.dart';
 import 'package:provider/provider.dart';
+
+import 'app/app.dart';
+import 'app/app_bloc_observer.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final poteuApi = LocalStoragePoteuApi();
 
+  bootstrap(poteuApi: poteuApi);
+}
+
+Future<void> bootstrap({required PoteuApi poteuApi}) async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(Provider(create: (_) => Bloc(), child: const App()));
-}
+  // runApp(Provider(create: (_) => Bloc(), child: const App()));
+  FlutterError.onError = (details) {
+    log(details.exceptionAsString(), stackTrace: details.stack);
+  };
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  final poteuLocalStorageRepository =
+      PoteuLocalStorageRepository(poteuApi: poteuApi);
 
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.teal),
-        home: const MainPage(),
+  runZonedGuarded(
+    () async {
+      await BlocOverrides.runZoned(
+        () async => runApp(Provider(
+          create: (_) => MyBloc(),
+          child: App(
+            poteuLocalStorageRepository: poteuLocalStorageRepository,
+          ),
+        )),
+        blocObserver: AppBlocObserver(),
       );
+    },
+    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  );
 }

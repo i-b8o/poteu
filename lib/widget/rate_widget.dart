@@ -9,7 +9,7 @@ class RateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Bloc>(builder: (context, _bloc, _) {
+    return Consumer<MyBloc>(builder: (context, _bloc, _) {
       return StreamBuilder<double>(
           stream: _bloc.rateStream,
           builder: (context, snapshot) {

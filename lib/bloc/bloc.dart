@@ -37,7 +37,7 @@ class Edited {
   }
 }
 
-class Bloc {
+class MyBloc {
   bool _playing = false;
   // rate
   late double _rate; //0.0-1.0
@@ -114,7 +114,7 @@ class Bloc {
     playingStateController.sink.add(_playing);
   }
 
-  Bloc() {
+  MyBloc() {
     prefs.then((value) async {
       if (value.get('edited') != null) {
         _editedParagraphs = value.getStringList('edited') ?? [];

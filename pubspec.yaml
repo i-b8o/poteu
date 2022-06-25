@@ -39,6 +39,12 @@ dependencies:
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
 
+  local_storage_poteu_api:
+    path: packages/local_storage_poteu_api
+  poteu_api:
+    path: packages/poteu_api
+  poteu_local_storage_repository:
+    path: packages/poteu_local_storage_repository
 
 
   # The following adds the Cupertino Icons font to your application.

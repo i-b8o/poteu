@@ -11,8 +11,9 @@ dependencies:
     sdk: flutter
 
   meta: ^1.7.0
-  rxdart: ^0.27.4
-  shared_preferences: ^2.0.15
+  hive: ^2.2.2
+  path_provider: ^2.0.11
+
   poteu_api:
     path: ../poteu_api
 

@@ -1,57 +1,35 @@
-import 'dart:convert';
+import 'dart:io';
+import 'package:hive/hive.dart';
 
 import 'package:local_storage_poteu_api/local_storage_poteu_api.dart';
 import 'package:poteu_api/poteu_api.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:path_provider/path_provider.dart' as pathProvider;
 
 /// {@template local_storage_poteu_api}
 /// A Flutter implementation of the [PoteuApi] that uses local storage.
 /// {@endtemplate}
 class LocalStoragePoteuApi extends PoteuApi {
   /// {@macro local_storage_poteu_api}
-  LocalStoragePoteuApi(
-      {required SharedPreferences plugin, required String collectionKey})
-      : _plugin = plugin,
-        _collectionKey = collectionKey {
+  LocalStoragePoteuApi() {
     _init();
   }
-  final String _collectionKey;
-  final SharedPreferences _plugin;
-  final _editedStreamController =
-      BehaviorSubject<List<Edited>>.seeded(const []);
 
-  String? _getValue(String key) => _plugin.getString(key);
-
-  Future<void> _setValue(String key, String value) =>
-      _plugin.setString(key, value);
-
-  void _init() {
-    final editedJson = _getValue(_collectionKey);
-    if (editedJson != null) {
-      final todos = List<Map>.from(json.decode(editedJson) as List)
-          .map((jsonMap) => Edited.fromJson(Map<String, dynamic>.from(jsonMap)))
-          .toList();
-      _editedStreamController.add(todos);
-    } else {
-      _editedStreamController.add(const []);
-    }
+  Future<void> _init() async {
+    Directory directory = await pathProvider.getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
+    Hive.registerAdapter(DocAdapter());
   }
 
   @override
-  Stream<List<Edited>> getEdited() =>
-      _editedStreamController.asBroadcastStream();
+  Future<Doc> getDoc(String abbreviation) async {
+    final box = await Hive.openBox<Doc>('docs');
+    Doc _doc = box.values.lastWhere((doc) => doc.abbreviation == abbreviation);
+    return _doc;
+  }
 
   @override
-  Future<void> saveEdited(Edited edited) {
-    final editeds = [..._editedStreamController.value];
-    final todoIndex = editeds.indexWhere((e) => e.id == edited.id);
-    if (todoIndex >= 0) {
-      editeds[todoIndex] = edited;
-    } else {
-      editeds.add(edited);
-    }
-
-    _editedStreamController.add(editeds);
-    return _setValue(_collectionKey, json.encode(editeds));
+  Future<void> saveDoc(Doc doc) async {
+    var box = await Hive.openBox<Doc>('docs');
+    box.add(doc);
   }
 }

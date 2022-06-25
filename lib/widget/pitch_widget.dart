@@ -9,7 +9,7 @@ class PitchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Bloc>(builder: (context, _bloc, _) {
+    return Consumer<MyBloc>(builder: (context, _bloc, _) {
       return StreamBuilder<Object>(
           stream: _bloc.pitchStream,
           builder: (context, snapshot) {

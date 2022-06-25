@@ -23,7 +23,7 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
   String _pressedText = "";
   @override
   Widget build(BuildContext context) {
-    List<FocusedMenuItem> _menuItems(Bloc _bloc, bool _playing) {
+    List<FocusedMenuItem> _menuItems(MyBloc _bloc, bool _playing) {
       return !_playing
           ? <FocusedMenuItem>[
               FocusedMenuItem(
@@ -109,7 +109,7 @@ class _ParagraphWidgetState extends State<ParagraphWidget> {
             ],
           ))
         : Container();
-    return Consumer<Bloc>(builder: (context, _bloc, _) {
+    return Consumer<MyBloc>(builder: (context, _bloc, _) {
       return Column(
         children: [
           for (var t in widget.paragraph.text)

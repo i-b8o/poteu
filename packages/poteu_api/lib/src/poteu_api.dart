@@ -3,17 +3,17 @@ import 'models/models.dart';
 abstract class PoteuApi {
   const PoteuApi();
 
-  /// Provides a [Stream] of all edited paragraphs for the document.
-  Stream<List<Edited>> getEdited();
+  /// Provides a [Doc].
+  Future<Doc> getDoc(String abbreviation);
 
-  /// Saves a [edited].
+  /// Saves a [Doc].
   ///
-  /// If a [edited] with the same id already exists, it will be replaced.
-  Future<void> saveEdited(Edited edited);
+  /// If a [Doc] with the same name already exists, it will be replaced.
+  Future<void> saveDoc(Doc document);
 
-  /// Provides a settings for TTS.
-  Future<TtsSettings> getTTSSettings();
+  // /// Provides a settings for TTS.
+  // Future<TtsSettings> getTTSSettings();
 
-  /// Saves a [TTSSettings].
-  Future<void> saveTTSSettings(TtsSettings settings);
+  // /// Saves a [TTSSettings].
+  // Future<void> saveTTSSettings(TtsSettings settings);
 }

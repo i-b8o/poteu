@@ -24,7 +24,7 @@ class _ChapterPageState extends State<ChapterPage> {
   @override
   Widget build(BuildContext context) {
     List<Paragraph> paragraphs = widget.chapter.paragraphs;
-    return Consumer<Bloc>(builder: (context, _bloc, _) {
+    return Consumer<MyBloc>(builder: (context, _bloc, _) {
       return WillPopScope(
         onWillPop: () async {
           _bloc.stop();
