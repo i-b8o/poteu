@@ -1,0 +1,13 @@
+name: regulation_api
+description: The interface and models for an API providing access to regulation.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.16.0 <3.0.0"
+
+dependencies:
+
+
+dev_dependencies:
+  very_good_analysis: ^2.4.0

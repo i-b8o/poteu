@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 3.3.15+19
+version: 3.3.16+20
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -29,22 +29,40 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  unity_ads_plugin: ^0.3.3
   focused_menu: ^1.0.5
-  flutter_tts: ^3.2.4
-  material_design_icons_flutter: ^5.0.6595
   shared_preferences: ^2.0.9
-  provider: ^6.0.1
-  rxdart: ^0.27.3
-  flutter_bloc: ^8.0.1
-  bloc: ^8.0.3
+  flutter_bloc: ^8.1.1
+  bloc: ^8.1.0
+  equatable: ^2.0.5
+  flutter_widget_from_html: ^0.8.5
+  scrollable_positioned_list: ^0.3.2
+  rolling_switch: ^0.0.2
+  html: ^0.15.0
+  flutter_colorpicker: ^1.0.3
+  emojis: ^0.9.9
+  flutter_share: ^2.0.0
+  flutter_html: ^2.2.1
+  flutter_tts: ^3.5.0
+  carousel_slider: ^4.1.1
+  sentry_flutter: ^6.9.1
 
-  local_storage_poteu_api:
-    path: packages/local_storage_poteu_api
-  poteu_api:
-    path: packages/poteu_api
-  poteu_local_storage_repository:
-    path: packages/poteu_local_storage_repository
+  local_storage_regulation_api:
+    path: packages/local_storage_regulation_api
+  regulation_api:
+    path: packages/regulation_api
+  sp:
+    path: packages/sp
+  sp_api:
+    path: packages/sp_api
+  sqlite:
+    path: packages/sqlite
+  sqlite_api:
+    path: packages/sqlite_api
+  tts:
+    path: packages/tts
+  tts_api:
+    path: packages/tts_api
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -59,6 +77,24 @@ dev_dependencies:
   very_good_analysis: ^3.0.1
 
   
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - assets/images/table.png
+    - assets/images/colors.png
+    - assets/images/icon.png
+
+  fonts:
+    - family: Yandex
+      fonts:
+        - asset: assets/fonts/YandexSansText-Regular.ttf
+        - asset: assets/fonts/YandexSansText-Thin.ttf
+    
 
 flutter_icons:
   android: "launcher_icon"
@@ -73,53 +109,3 @@ flutter_icons:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.4
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
-flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
-  uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/images/1.png
-    - assets/images/2.png
-    - assets/images/3.png
-    - assets/images/4.png
-    - assets/images/5.png
-    - assets/images/6.png
-    - assets/images/7.png
-    - assets/images/8.png
-    - assets/images/9.png
-    - assets/images/10.png
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
