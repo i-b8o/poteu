@@ -348,7 +348,9 @@ class RegulationRepository {
 
   Future<List<String>?> getVoices() async {
     try {
-      return await _ttsApi.getVoices();
+      List<String>? _voices = await _ttsApi.getVoices();
+      // Drop duplicates
+      return _voices != null ? _voices.toSet().toList() : _voices;
     } catch (exception, stackTrace) {
       sendError(exception, stackTrace);
       return null;

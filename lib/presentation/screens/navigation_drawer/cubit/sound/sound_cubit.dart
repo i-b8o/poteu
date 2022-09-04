@@ -39,8 +39,7 @@ class SoundCubit extends Cubit<SoundState> {
         ? _voices != null
             ? _voices![0]
             : ''
-        : '';
-
+        : settings.voice;
     emit(SoundState(
         volume: _volume,
         speed: _speed,

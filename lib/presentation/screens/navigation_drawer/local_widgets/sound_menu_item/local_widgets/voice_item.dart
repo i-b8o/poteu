@@ -14,7 +14,8 @@ class VoiceItem extends StatelessWidget {
     return BlocBuilder<SoundCubit, SoundState>(
       builder: (context, state) {
         List<String>? _voices = context.read<SoundCubit>().voices;
-        return _voices == null
+
+        return _voices == null || state.voice == ''
             ? Container()
             : GestureDetector(
                 onTap: () {
@@ -37,18 +38,28 @@ class VoiceItem extends StatelessWidget {
                               VoiceBtn(
                                 color: Color(0xFF5ec8ad),
                               ),
-                              DropdownButton(
-                                  items: _items,
-                                  value: state.voice,
-                                  style: Theme.of(context)
-                                      .navigationRailTheme
-                                      .unselectedLabelTextStyle,
-                                  dropdownColor: Theme.of(context)
-                                      .navigationRailTheme
-                                      .backgroundColor,
-                                  onChanged: (String? value) => context
-                                      .read<SoundCubit>()
-                                      .setVoice(value ?? "")),
+                              BlocBuilder<SoundCubit, SoundState>(
+                                buildWhen: (previous, current) =>
+                                    previous.voice != current.voice,
+                                builder: (context, state) {
+                                  try {
+                                    return DropdownButton(
+                                        items: _items,
+                                        value: state.voice,
+                                        style: Theme.of(context)
+                                            .navigationRailTheme
+                                            .unselectedLabelTextStyle,
+                                        dropdownColor: Theme.of(context)
+                                            .navigationRailTheme
+                                            .backgroundColor,
+                                        onChanged: (String? value) => context
+                                            .read<SoundCubit>()
+                                            .setVoice(value ?? ""));
+                                  } catch (e) {
+                                    return Container();
+                                  }
+                                },
+                              ),
                             ],
                           ),
                         );
