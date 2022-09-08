@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
+import '../../../../../../bloc/speak/speak_cubit.dart';
 import '../../../bloc/colors/colors_cubit.dart';
-import '../../../bloc/speak/speak_cubit.dart';
 import 'chapter_app_bar_pagination.dart';
 
 class ChapterAppBar extends StatelessWidget {

@@ -27,31 +27,7 @@ class BottomBarBlack extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // BottomBarBlackTop(
-            //   height: height,
-            //   fontHeight: iconSize,
-            // ),
-            // context.read<BottomBarCubit>().state
-            //     ? BottomBarBlackTop(
-            //         height: height,
-            //         fontHeight: iconSize,
-            //       )
-            //     : GestureDetector(
-            //         onTap: () => context.read<BottomBarCubit>().expand(),
-            //         child: Container(
-            //           decoration: BoxDecoration(
-            //               border: Border.all(color: Colors.transparent)),
-            //           height: height * 0.1,
-            //           width: MediaQuery.of(context).size.width,
-            //           child: Icon(
-            //             Icons.arrow_drop_up_sharp,
-            //             color: Theme.of(context)
-            //                 .appBarTheme
-            //                 .toolbarTextStyle!
-            //                 .color,
-            //           ),
-            //         ),
-            //       ),
+        
             Container(
               height: height * 0.2,
               child: Row(

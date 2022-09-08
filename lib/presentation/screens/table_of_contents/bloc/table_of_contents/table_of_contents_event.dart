@@ -11,7 +11,7 @@ class TableOfContentsInitialEvent extends TableOfContentsEvent {
   const TableOfContentsInitialEvent();
 }
 
-class TableOfContentsSearchTextFieldActivatedEvent
-    extends TableOfContentsEvent {
-  const TableOfContentsSearchTextFieldActivatedEvent();
-}
+// class TableOfContentsSearchTextFieldActivatedEvent
+//     extends TableOfContentsEvent {
+//   const TableOfContentsSearchTextFieldActivatedEvent();
+// }

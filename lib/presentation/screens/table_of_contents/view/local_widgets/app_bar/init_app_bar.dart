@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../bloc/table_of_contents/table_of_contents_bloc.dart';
 
 class InitAppBAr extends StatelessWidget {
   const InitAppBAr({
@@ -42,9 +39,11 @@ class InitAppBAr extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            context
-                .read<TableOfContentsBloc>()
-                .add(TableOfContentsSearchTextFieldActivatedEvent());
+            Navigator.pushNamed(
+              context,
+              '/searchScreen',
+            );
+
           },
           icon: Icon(
             Icons.search,

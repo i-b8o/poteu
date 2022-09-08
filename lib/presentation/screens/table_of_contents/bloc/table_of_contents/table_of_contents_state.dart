@@ -14,5 +14,5 @@ class TableOfContentsInitialState extends TableOfContentsState {
   const TableOfContentsInitialState({required this.title, required this.name});
 }
 
-class TableOfContentsSearchTextFieldActivatedState
-    extends TableOfContentsState {}
+// class TableOfContentsSearchTextFieldActivatedState
+//     extends TableOfContentsState {}

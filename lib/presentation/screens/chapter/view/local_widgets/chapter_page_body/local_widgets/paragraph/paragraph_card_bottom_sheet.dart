@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../bloc/speak/speak_cubit.dart';
+import '../../../../../../../../bloc/speak/speak_cubit.dart';
+
+
 
 class ParagraphCardBottomSheet extends StatelessWidget {
   const ParagraphCardBottomSheet({

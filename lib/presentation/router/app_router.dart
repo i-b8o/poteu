@@ -4,7 +4,7 @@ import '../screens/chapter/model/chapter_arguments.dart';
 import '../screens/chapter/view/chapter_page.dart';
 
 import '../screens/notes_list/notes_list_page.dart';
-import '../screens/search/model/editable_content_paragraph.dart';
+
 import '../screens/search/search_screen.dart';
 import '../screens/table_of_contents/view/table_of_contents.dart';
 
@@ -38,13 +38,7 @@ class AppRouter {
         break;
 
       case AppRouteNames.searchScreen:
-        final arguments = routeSettings.arguments;
-        List<EditableContentParagraph> chapterArguments =
-            arguments is List<EditableContentParagraph> ? arguments : [];
-        return MaterialPageRoute(
-            builder: (_) => SearchScreen(
-                  paragraphs: chapterArguments,
-                ));
+        return MaterialPageRoute(builder: (_) => SearchScreen());
         // ignore: dead_code
         break;
 

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poteu/bloc/regulation/regulation_cubit.dart';
+
+import '../../../bloc/speak/speak_cubit.dart';
 import '../../../repository/regulation_repository.dart';
 import '../../router/app_router.dart';
 import '../../theme/theme.dart';
 
 import '../chapter/bloc/colors/colors_cubit.dart';
-import '../chapter/bloc/speak/speak_cubit.dart';
 import '../navigation_drawer/cubit/font/font_cubit.dart';
 import '../navigation_drawer/cubit/sound/sound_cubit.dart';
 import '../notes_list/bloc/notes/notes_cubit.dart';
@@ -34,9 +36,13 @@ class AppView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+          create: (context) => RegulationCubit(
+            regulationRepository: context.read<RegulationRepository>(),
+          ),
+        ),
+        BlocProvider(
           create: (context) => TableOfContentsBloc(
             regulationRepository: context.read<RegulationRepository>(),
-            searchController: TextEditingController(),
           ),
         ),
         BlocProvider(

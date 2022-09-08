@@ -25,9 +25,7 @@ class NotesCubit extends Cubit<NotesState> {
     });
   }
 
-  List<int> getChapterAndParagraphOrderNums(int chapterID, paragraphID) =>
-      _regulationRepository.getChapterAndParagraphOrderNums(
-          chapterID, paragraphID);
+
 
   final RegulationRepository _regulationRepository;
   List<EditedParagraphInfo> _editedParagraphsInfo = [];

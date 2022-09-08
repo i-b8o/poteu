@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:poteu/bloc/regulation/regulation_cubit.dart';
 
 import '../chapter/model/chapter_arguments.dart';
 import '../table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
@@ -47,7 +48,7 @@ class NotesListPage extends StatelessWidget {
                                 onTap: () {
                                   List<int> chapterAndParagraphOrderNums =
                                       context
-                                          .read<NotesCubit>()
+                                          .read<RegulationCubit>()
                                           .getChapterAndParagraphOrderNums(
                                               _bookMark.chapterID,
                                               _bookMark.paragraphID);

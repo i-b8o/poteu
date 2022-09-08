@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../../../../bloc/speak/speak_cubit.dart';
 import '../../../../repository/regulation_repository.dart';
 import '../../../widgets/regulation_app_bar.dart';
 import '../bloc/bottom_bar/bottom_bar_cubit.dart';
 import '../bloc/page_view/bloc.dart';
 import '../bloc/save_paragraph/save_paragraph_cubit.dart';
-import '../bloc/speak/speak_cubit.dart';
 import '../model/chapter_arguments.dart';
 
 import '../model/span.dart';
