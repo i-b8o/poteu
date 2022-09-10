@@ -4,8 +4,9 @@ import 'package:sp_api/sp_api.dart';
 import 'package:sqlite_api/sqlite_api.dart';
 import 'package:tts_api/tts_api.dart';
 
-import '../presentation/screens/search/model/editable_content_paragraph.dart';
-import '../utils/errors.dart';
+import 'package:poteu/presentation/screens/search/model/editable_content_paragraph.dart';
+import 'package:poteu/utils/errors.dart';
+import 'package:poteu/utils/text.dart';
 
 class RegulationRepository {
   const RegulationRepository({
@@ -132,8 +133,9 @@ class RegulationRepository {
       query = query.toLowerCase().trim();
 
       for (Paragraph p in _paragraphs) {
-        String modifiedContent = p.content.replaceAll(
-            query, "<span style='background-color:#FFFF00;' >${query}</span>");
+        String modifiedContent = removeAllTagsExceptLinks(p.content);
+        modifiedContent = modifiedContent.replaceAll(
+            query, "<span style='background-color:#FFFF00;'>${query}</span>");
         _returnedList.add(
             EditableContentParagraph(paragraph: p, content: modifiedContent));
       }

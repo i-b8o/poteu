@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
-import 'local_widgets/nav_drawer_menu_item.dart';
+import 'package:poteu/presentation/screens/table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/local_widgets/nav_drawer_menu_item.dart';
 
 class DocsMenuItem extends StatelessWidget {
   const DocsMenuItem({Key? key, required this.index}) : super(key: key);

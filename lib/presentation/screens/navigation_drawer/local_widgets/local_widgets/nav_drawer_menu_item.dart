@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/expansion/expansion_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/expansion/expansion_cubit.dart';
 
 class NavDrawerMenuItem extends StatelessWidget {
   const NavDrawerMenuItem({

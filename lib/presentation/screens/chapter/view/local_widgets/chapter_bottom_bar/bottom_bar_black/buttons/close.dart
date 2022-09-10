@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../bloc/bottom_bar/bottom_bar_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/bottom_bar/bottom_bar_cubit.dart';
 
-import '../../../../../bloc/colors/colors_cubit.dart';
-import '../bottom_bar_black_icon.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/colors/colors_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/bottom_bar_black_icon.dart';
 
 class close extends StatelessWidget {
   const close({

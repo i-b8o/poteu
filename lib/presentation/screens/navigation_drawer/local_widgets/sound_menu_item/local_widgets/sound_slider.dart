@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'voice_btn.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/sound_menu_item/local_widgets/voice_btn.dart';
 
 class SoundSlider extends StatelessWidget {
   const SoundSlider({

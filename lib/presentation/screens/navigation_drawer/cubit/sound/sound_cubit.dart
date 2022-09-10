@@ -4,9 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tts_api/tts_api.dart';
 
-import '../../../../../repository/regulation_repository.dart';
-import '../../../../../utils/patters.dart';
-import '../../model/sound_settings.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/utils/patters.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/model/sound_settings.dart';
 
 part 'sound_state.dart';
 

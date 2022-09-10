@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../notes_list/bloc/notes/notes_cubit.dart';
+import 'package:poteu/presentation/screens/notes_list/bloc/notes/notes_cubit.dart';
 
 class NotesMenuItem extends StatelessWidget {
   const NotesMenuItem({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../widgets/regulation_app_bar.dart';
-import '../bloc/search/search_cubit.dart';
+import 'package:poteu/presentation/widgets/regulation_app_bar.dart';
+import 'package:poteu/presentation/screens/search/bloc/search/search_cubit.dart';
 
 class SearchAppBar extends StatelessWidget {
   const SearchAppBar({
@@ -33,6 +33,7 @@ class SearchAppBar extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: TextField(
+                  autofocus: true,
                   controller: context.read<SearchCubit>().searchController,
                   cursorColor: Theme.of(context).appBarTheme.foregroundColor,
                   style: Theme.of(context).appBarTheme.toolbarTextStyle,

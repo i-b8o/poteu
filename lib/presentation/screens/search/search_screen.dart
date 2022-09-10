@@ -4,11 +4,11 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:poteu/bloc/regulation/regulation_cubit.dart';
 import 'package:poteu/presentation/screens/search/bloc/search/search_cubit.dart';
 
-import '../../../repository/regulation_repository.dart';
-import '../chapter/model/chapter_arguments.dart';
-import '../table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
-import 'local_widgets/search_app_bar.dart';
-import 'model/editable_content_paragraph.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
+import 'package:poteu/presentation/screens/table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
+import 'package:poteu/presentation/screens/search/local_widgets/search_app_bar.dart';
+import 'package:poteu/presentation/screens/search/model/editable_content_paragraph.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);

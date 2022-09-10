@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../../../bloc/speak/speak_cubit.dart';
-
-
+import 'package:poteu/bloc/speak/speak_cubit.dart';
 
 class ParagraphCardBottomSheet extends StatelessWidget {
   const ParagraphCardBottomSheet({
@@ -56,7 +54,7 @@ class ParagraphCardBottomSheet extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Navigator.pop(context);
-              
+
               await context.read<SpeakCubit>().speakChapter(paragraphs);
             },
             child: Container(

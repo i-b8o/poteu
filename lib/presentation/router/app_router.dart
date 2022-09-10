@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../screens/chapter/model/chapter_arguments.dart';
-import '../screens/chapter/view/chapter_page.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
+import 'package:poteu/presentation/screens/chapter/view/chapter_page.dart';
 
-import '../screens/notes_list/notes_list_page.dart';
+import 'package:poteu/presentation/screens/notes_list/notes_list_page.dart';
 
-import '../screens/search/search_screen.dart';
-import '../screens/table_of_contents/view/table_of_contents.dart';
+import 'package:poteu/presentation/screens/search/search_screen.dart';
+import 'package:poteu/presentation/screens/table_of_contents/view/table_of_contents.dart';
 
 abstract class AppRouteNames {
   static const contents = '/';

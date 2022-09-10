@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:regulation_api/regulation_api.dart';
 import 'package:sqlite_api/sqlite_api.dart';
 
-import '../../../../../repository/regulation_repository.dart';
-import '../../../../../utils/text.dart';
-import '../../model/span.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/utils/text.dart';
+import 'package:poteu/presentation/screens/chapter/model/span.dart';
 
 part 'save_paragraph_state.dart';
 
@@ -40,9 +40,11 @@ class SaveParagraphCubit extends Cubit<SaveParagraphState> {
     }
     String _pContent = _paragraph.content;
 
-    Map<int, String> _tagsMap = getTags(_pContent);
-    _tagsMap = clearTags(_tagsMap);
-    String _content = getStringForSave(_tagsMap, parseHtmlString(_pContent));
+    // Map<int, String> _tagsMap = getTags(_pContent);
+    // _tagsMap = clearTags(_tagsMap);
+    // String _content = getStringForSave(_tagsMap, parseHtmlString(_pContent));
+
+    String _content = removeAllTagsExceptLinks(_pContent);
 
     await _regulationRepository.saveParagraph(EditedParagraph(
         paragraphId: _paragraph.id,

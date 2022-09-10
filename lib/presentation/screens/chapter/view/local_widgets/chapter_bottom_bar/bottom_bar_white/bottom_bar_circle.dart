@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/colors/colors_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/colors/colors_cubit.dart';
 
 class BottomBarCircle extends StatelessWidget {
   const BottomBarCircle({

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:sqlite_api/sqlite_api.dart';
 
-import '../../../../../repository/regulation_repository.dart';
-import '../../../../../utils/text.dart';
-import '../../../table_of_contents/model/edited_paragraph_info.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/utils/text.dart';
+import 'package:poteu/presentation/screens/table_of_contents/model/edited_paragraph_info.dart';
 
 part 'notes_state.dart';
 
@@ -25,8 +25,6 @@ class NotesCubit extends Cubit<NotesState> {
     });
   }
 
-
-
   final RegulationRepository _regulationRepository;
   List<EditedParagraphInfo> _editedParagraphsInfo = [];
 
@@ -44,10 +42,10 @@ class NotesCubit extends Cubit<NotesState> {
   Future<void> delete(EditedParagraphInfo paragraph) async {
     String _pContent = paragraph.content;
 
-    Map<int, String> _tagsMap = getTags(_pContent);
-    _tagsMap = clearTags(_tagsMap);
-    String _content = getStringForSave(_tagsMap, parseHtmlString(_pContent));
-
+    // Map<int, String> _tagsMap = getTags(_pContent);
+    // _tagsMap = clearTags(_tagsMap);
+    // String _content = getStringForSave(_tagsMap, parseHtmlString(_pContent));
+    String _content = removeAllTagsExceptLinks(_pContent);
     if (paragraph.edited == 1) {
       await _regulationRepository.saveParagraph(EditedParagraph(
           paragraphId: paragraph.paragraphID,

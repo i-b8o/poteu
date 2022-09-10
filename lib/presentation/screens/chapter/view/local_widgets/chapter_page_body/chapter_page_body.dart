@@ -3,18 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:regulation_api/regulation_api.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import '../../../bloc/bottom_bar/bottom_bar_cubit.dart';
-import '../../../bloc/links/links_bloc.dart';
-import 'local_widgets/chapter_page_body_header.dart';
-import 'local_widgets/paragraph/paragraph_card.dart';
-
+import 'package:poteu/presentation/screens/chapter/bloc/bottom_bar/bottom_bar_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/links/links_bloc.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/chapter_page_body_header.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/paragraph/paragraph_card.dart';
 
 class ChapterPageBody extends StatelessWidget {
   const ChapterPageBody({
     Key? key,
     required this.header,
     required this.paragraphs,
-    required this.scrollTo, required this.itemScrollController,
+    required this.scrollTo,
+    required this.itemScrollController,
   }) : super(key: key);
 
   final String header;

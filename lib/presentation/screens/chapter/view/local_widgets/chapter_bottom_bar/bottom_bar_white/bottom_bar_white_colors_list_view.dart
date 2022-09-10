@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/colors/colors_cubit.dart';
-import 'bottom_bar_circle.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/colors/colors_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_white/bottom_bar_circle.dart';
 
 class BottomBarWhiteColorsListView extends StatelessWidget {
   const BottomBarWhiteColorsListView({Key? key, required this.height})

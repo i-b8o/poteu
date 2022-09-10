@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../../repository/regulation_repository.dart';
+import 'package:poteu/repository/regulation_repository.dart';
 
 part 'font_state.dart';
 

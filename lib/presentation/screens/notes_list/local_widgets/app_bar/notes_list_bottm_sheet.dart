@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/notes/notes_cubit.dart';
+import 'package:poteu/presentation/screens/notes_list/bloc/notes/notes_cubit.dart';
 
 class NotesListAppBarBottomSheet extends StatelessWidget {
   const NotesListAppBarBottomSheet({

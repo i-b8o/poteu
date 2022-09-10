@@ -13,8 +13,8 @@ import 'package:sp/sp.dart';
 import 'package:sqlite/sqlite.dart';
 import 'package:tts/tts.dart';
 
-import 'presentation/screens/app/app.dart';
-import 'repository/regulation_repository.dart';
+import 'package:poteu/presentation/screens/app/app.dart';
+import 'package:poteu/repository/regulation_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

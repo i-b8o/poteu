@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import '../../../../bloc/speak/speak_cubit.dart';
-import '../../../../repository/regulation_repository.dart';
-import '../../../widgets/regulation_app_bar.dart';
-import '../bloc/bottom_bar/bottom_bar_cubit.dart';
-import '../bloc/page_view/bloc.dart';
-import '../bloc/save_paragraph/save_paragraph_cubit.dart';
-import '../model/chapter_arguments.dart';
+import 'package:poteu/bloc/speak/speak_cubit.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/presentation/widgets/regulation_app_bar.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/bottom_bar/bottom_bar_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/page_view/bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/save_paragraph/save_paragraph_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
 
-import '../model/span.dart';
-import 'local_widgets/chapter_app_bar/chapter_app_bar.dart';
-import 'local_widgets/chapter_bottom_bar/bottom_bar_black/bottom_bar_black.dart';
-import 'local_widgets/chapter_bottom_bar/bottom_bar_white/bottom_bar_white.dart';
-import 'local_widgets/chapter_page_body/chapter_page_body.dart';
+import 'package:poteu/presentation/screens/chapter/model/span.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_app_bar/chapter_app_bar.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/bottom_bar_black.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_white/bottom_bar_white.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/chapter_page_body.dart';
 
 class ChapterPageView extends StatelessWidget {
   const ChapterPageView({Key? key, required this.args}) : super(key: key);
@@ -128,7 +128,9 @@ class ChapterPageView extends StatelessWidget {
                                         return ChapterPageBody(
                                           scrollTo: state.paragraphOrderNum,
                                           header: state.chapterName,
-                                          paragraphs: state.paragraphs, itemScrollController:  ItemScrollController(),
+                                          paragraphs: state.paragraphs,
+                                          itemScrollController:
+                                              ItemScrollController(),
                                         );
                                       })),
                                   AnimatedPositioned(

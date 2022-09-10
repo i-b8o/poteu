@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:regulation_api/regulation_api.dart';
 
-import '../../../../../repository/regulation_repository.dart';
+import 'package:poteu/repository/regulation_repository.dart';
 
 part 'table_of_contents_event.dart';
 part 'table_of_contents_state.dart';

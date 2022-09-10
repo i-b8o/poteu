@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../utils/font.dart';
-import '../../cubit/font/font_cubit.dart';
+import 'package:poteu/utils/font.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/font/font_cubit.dart';
 
 class FontSlider extends StatelessWidget {
   const FontSlider({

@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_share/flutter_share.dart';
 
-import '../../../../../bloc/colors/colors_cubit.dart';
-import '../../../../../bloc/page_view/bloc.dart';
-import '../../../../../bloc/save_paragraph/save_paragraph_cubit.dart';
-import '../../../../../model/span.dart';
-import '../bottom_bar_black_icon.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/colors/colors_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/page_view/bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/save_paragraph/save_paragraph_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/model/span.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/bottom_bar_black_icon.dart';
 
 class mark extends StatelessWidget {
   const mark({

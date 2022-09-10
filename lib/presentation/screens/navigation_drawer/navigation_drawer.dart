@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rolling_switch/rolling_switch.dart';
 
-import '../app/bloc/app_bloc.dart';
-import 'cubit/expansion/expansion_cubit.dart';
-import 'local_widgets/font_menu_item.dart';
-import 'local_widgets/notes_menu_item.dart';
-import 'local_widgets/sound_menu_item/sound_menu_item.dart';
+import 'package:poteu/presentation/screens/app/bloc/app_bloc.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/expansion/expansion_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/font_menu_item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/notes_menu_item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/sound_menu_item/sound_menu_item.dart';
 
 // TODO add in theme
 class NavigationDrawer extends StatelessWidget {
@@ -74,7 +74,6 @@ class NavigationDrawer extends StatelessWidget {
                                 size: 35,
                                 color: Theme.of(context).indicatorColor,
                               ),
-
                               trailing: Transform.scale(
                                 scale: 0.7,
                                 child: RollingSwitch.widget(

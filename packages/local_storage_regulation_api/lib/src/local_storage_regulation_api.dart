@@ -50,6 +50,9 @@ class LocalStorageRegulationApi extends RegulationApi {
     for (final Chapter _chapter in _chapters) {
       _paragraphs = _chapter.paragraphs.where((paragraph) {
         String _content = paragraph.content.toLowerCase();
+        // Remove HTML tags from a content
+        _content = _content.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ' ');
+
         return _content.contains(query);
       }).toList();
       _returnedList.addAll(_paragraphs);

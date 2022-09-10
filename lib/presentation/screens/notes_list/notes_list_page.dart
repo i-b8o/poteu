@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poteu/bloc/regulation/regulation_cubit.dart';
 
-import '../chapter/model/chapter_arguments.dart';
-import '../table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
-import '../table_of_contents/model/edited_paragraph_info.dart';
-import 'bloc/notes/notes_cubit.dart';
-import 'local_widgets/app_bar/notes_list_app_bar.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
+import 'package:poteu/presentation/screens/table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
+import 'package:poteu/presentation/screens/table_of_contents/model/edited_paragraph_info.dart';
+import 'package:poteu/presentation/screens/notes_list/bloc/notes/notes_cubit.dart';
+import 'package:poteu/presentation/screens/notes_list/local_widgets/app_bar/notes_list_app_bar.dart';
 
 class NotesListPage extends StatelessWidget {
   const NotesListPage({Key? key}) : super(key: key);

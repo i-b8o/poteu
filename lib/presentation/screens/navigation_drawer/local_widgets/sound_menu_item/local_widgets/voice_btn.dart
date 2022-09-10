@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../cubit/sound/sound_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/sound/sound_cubit.dart';
 
 class VoiceBtn extends StatelessWidget {
   const VoiceBtn({

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'bottom_bar_black_divider.dart';
-import 'buttons/underlined.dart';
-import 'buttons/close.dart';
-import 'buttons/clean.dart';
-import 'buttons/mark.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/bottom_bar_black_divider.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/buttons/underlined.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/buttons/close.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/buttons/clean.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_bottom_bar/bottom_bar_black/buttons/mark.dart';
 
 class BottomBarBlack extends StatelessWidget {
   const BottomBarBlack({
@@ -27,7 +27,6 @@ class BottomBarBlack extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-        
             Container(
               height: height * 0.2,
               child: Row(

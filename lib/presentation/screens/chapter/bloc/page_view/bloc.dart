@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:regulation_api/regulation_api.dart';
 
-import '../../../../../repository/regulation_repository.dart';
-import '../../../../../utils/text.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/utils/text.dart';
 
 part 'event.dart';
 part 'state.dart';

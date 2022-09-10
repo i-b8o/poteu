@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:poteu/bloc/regulation/regulation_cubit.dart';
 
-import '../../../bloc/speak/speak_cubit.dart';
-import '../../../repository/regulation_repository.dart';
-import '../../router/app_router.dart';
-import '../../theme/theme.dart';
+import 'package:poteu/bloc/speak/speak_cubit.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/presentation/router/app_router.dart';
+import 'package:poteu/presentation/theme/theme.dart';
 
-import '../chapter/bloc/colors/colors_cubit.dart';
-import '../navigation_drawer/cubit/font/font_cubit.dart';
-import '../navigation_drawer/cubit/sound/sound_cubit.dart';
-import '../notes_list/bloc/notes/notes_cubit.dart';
-import '../table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
-import 'bloc/app_bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/colors/colors_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/font/font_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/sound/sound_cubit.dart';
+import 'package:poteu/presentation/screens/notes_list/bloc/notes/notes_cubit.dart';
+import 'package:poteu/presentation/screens/table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
+import 'package:poteu/presentation/screens/app/bloc/app_bloc.dart';
 
 class App extends StatelessWidget {
   const App({Key? key, required this.regulationRepository}) : super(key: key);

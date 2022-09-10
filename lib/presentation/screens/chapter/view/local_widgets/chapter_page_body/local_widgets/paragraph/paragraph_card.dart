@@ -6,23 +6,23 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
 
-import '../../../../../../../../repository/regulation_repository.dart';
-import '../../../../../../../../utils/font.dart';
-import '../../../../../../../../utils/text.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/utils/font.dart';
+import 'package:poteu/utils/text.dart';
 
-import '../../../../../../navigation_drawer/cubit/font/font_cubit.dart';
-import '../../../../../bloc/bottom_bar/bottom_bar_cubit.dart';
-import '../../../../../bloc/links/links_bloc.dart';
-import '../../../../../bloc/page_view/bloc.dart';
-import '../../../../../bloc/paragraph_card/paragraph_card_cubit.dart';
-import '../../../../../bloc/save_paragraph/save_paragraph_cubit.dart';
-import '../../../../../model/chapter_arguments.dart';
-import 'paragraph_card_bottom_sheet.dart';
-import 'paragraph_nft.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/font/font_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/bottom_bar/bottom_bar_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/links/links_bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/page_view/bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/paragraph_card/paragraph_card_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/save_paragraph/save_paragraph_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/paragraph/paragraph_card_bottom_sheet.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/paragraph/paragraph_nft.dart';
 
 import 'package:regulation_api/regulation_api.dart';
 
-import 'paragraph_table.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/paragraph/paragraph_table.dart';
 
 enum ParagraphClass { right, center, indent, none }
 

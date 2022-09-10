@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../bloc/colors/colors_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/colors/colors_cubit.dart';
 
 class RegulationsColorPicker extends StatefulWidget {
   final double width;
-  RegulationsColorPicker(this.width);
+  const RegulationsColorPicker(this.width, {Key? key}) : super(key: key);
   @override
   _RegulationsColorPickerState createState() => _RegulationsColorPickerState();
 }

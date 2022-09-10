@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../../../../repository/regulation_repository.dart';
-import '../../../../../utils/text.dart';
+import 'package:poteu/repository/regulation_repository.dart';
+import 'package:poteu/utils/text.dart';
 
 part 'speak_state.dart';
 
@@ -20,7 +19,7 @@ class SpeakCubit extends Cubit<bool> {
 
   Future<void> speakChapter(List<String> _editableParagraphs) async {
     emit(true);
-    
+
     for (final String paragraph in _editableParagraphs) {
       String cleanParagraph = paragraph.replaceAll('-', ' ');
       await speak(cleanParagraph);
@@ -29,7 +28,6 @@ class SpeakCubit extends Cubit<bool> {
   }
 
   Future<void> stop() async {
-    
     emit(false);
     await _regulationRepository.stop();
   }

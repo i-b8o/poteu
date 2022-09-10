@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../widgets/regulation_app_bar.dart';
-import 'notes_list_bottm_sheet.dart';
+import 'package:poteu/presentation/widgets/regulation_app_bar.dart';
+import 'package:poteu/presentation/screens/notes_list/local_widgets/app_bar/notes_list_bottm_sheet.dart';
 
 class NotesListAppBar extends StatelessWidget {
   const NotesListAppBar({

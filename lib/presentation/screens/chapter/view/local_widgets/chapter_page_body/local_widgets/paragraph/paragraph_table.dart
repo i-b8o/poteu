@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:regulation_api/regulation_api.dart';
 
-import '../../../../../bloc/links/links_bloc.dart';
-import '../../../../../bloc/page_view/bloc.dart';
-import '../../../../../bloc/paragraph_card/paragraph_card_cubit.dart';
-import '../../../../../bloc/paragraph_table/paragraph_table_cubit.dart';
-import '../../../../../model/chapter_arguments.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/links/links_bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/page_view/bloc.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/paragraph_card/paragraph_card_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/bloc/paragraph_table/paragraph_table_cubit.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
 
 class ParagraphTable extends StatelessWidget {
   final String content;
@@ -31,7 +31,8 @@ class ParagraphTable extends StatelessWidget {
             scrollTo: _goTo.paragraphOrderNum));
   }
 
-  const ParagraphTable({key, required this.content, required this.ids});
+  const ParagraphTable({Key? key, required this.content, required this.ids})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

@@ -4,7 +4,7 @@ import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 class ParagraphNFT extends StatelessWidget {
   final String content;
 
-  const ParagraphNFT({key, required this.content});
+  const ParagraphNFT({Key? key, required this.content}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

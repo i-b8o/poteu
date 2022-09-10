@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/sound/sound_cubit.dart';
-import '../../model/sound_settings.dart';
-import '../local_widgets/menu_sub_Item.dart';
-import '../local_widgets/nav_drawer_menu_item.dart';
-import 'local_widgets/sound_slider.dart';
-import 'local_widgets/voice_item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/sound/sound_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/model/sound_settings.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/local_widgets/menu_sub_Item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/local_widgets/nav_drawer_menu_item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/sound_menu_item/local_widgets/sound_slider.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/sound_menu_item/local_widgets/voice_item.dart';
 
 class SoundMenuItem extends StatelessWidget {
   const SoundMenuItem({Key? key, required this.index}) : super(key: key);

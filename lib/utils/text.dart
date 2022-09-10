@@ -1,15 +1,24 @@
 import 'package:html/parser.dart';
 
-import '../presentation/screens/table_of_contents/model/edited_paragraph_info.dart';
-import 'color.dart';
+import 'package:poteu/presentation/screens/table_of_contents/model/edited_paragraph_info.dart';
+import 'package:poteu/utils/color.dart';
 
+String removeAllTagsExceptLinks(String htmlString) {
+  Map<int, String> _tagsMap = getTags(htmlString);
+  _tagsMap = clearTags(_tagsMap);
+  return getStringForSave(_tagsMap, parseHtmlString(htmlString));
+}
+
+// getTags returns a map whose keys are start position in the string of the tag and values are the tags
 Map<int, String> getTags(String htmlString) {
+  // splits the html string into a list of letters
   List<String> _symbols = htmlString.split('');
   Map<int, String> _tags = {};
   List<String> _tag = [];
   bool _tagOpened = false;
   int _tagOpenIndex = 0;
-  // Count only pure text letters, do not count tags letters
+
+  // Counts only pure text letters, do not count tags letters
   int _lettersIndex = 0;
   for (var i = 0; i < _symbols.length; i++) {
     String symbol = _symbols[i];
@@ -34,6 +43,7 @@ Map<int, String> getTags(String htmlString) {
 
     // Tag closed
     if (symbol == ">") {
+      // Add the tag
       _tags[_tagOpenIndex] = _tag.join("");
       _tagOpened = false;
       _tagOpenIndex = 0;
@@ -64,6 +74,7 @@ Map<int, String> addTag(Map<int, String> tags, String tag, int start) {
   return tags;
 }
 
+// Drops all tags except <a ...> and </a> from a tags map
 Map<int, String> clearTags(Map<int, String> tags) {
   Map<int, String> _newMap = {};
   tags.forEach((key, value) {
@@ -74,23 +85,28 @@ Map<int, String> clearTags(Map<int, String> tags) {
   return _newMap;
 }
 
+// getStringForSave inserts tags into a string
 String getStringForSave(Map<int, String> tags, String pureContent) {
+  // Sort the tags list based on the index value
   List<int> _sortedKeys = tags.keys.toList()..sort();
+
   if (_sortedKeys.length == 0) {
     return pureContent;
   }
 
+  // splits the pure string into a list of letters
   List<String> _symbols = pureContent.split('');
   List<String> _result = [];
   for (var i = 0; i < _symbols.length; i++) {
+    // A tag location
     if ((i == _sortedKeys[0]) && (tags[i] != null)) {
-      // Add the tag and symbol to the result list
+      // Add the tag and the symbol to the result list
       _result.add(tags[i]!);
-      
+
       _result.add(_symbols[i]);
       // Drop the tag from the tags map
       tags.removeWhere((key, value) => key == i);
-      // Drop the key from the kyes list
+      // Drop the key from the keys list
       _sortedKeys.removeAt(0);
 
       if (_sortedKeys.length == 0) {
@@ -102,6 +118,7 @@ String getStringForSave(Map<int, String> tags, String pureContent) {
       _result.add(_symbols[i]);
     }
   }
+  // a tag whose position at the end of the content
   if (_sortedKeys.length == 1) {
     _result.add(tags[_sortedKeys[0]] ?? "");
   }
@@ -122,7 +139,6 @@ String parseHtmlString(String htmlString) {
 }
 
 List<EditedParagraphLink> getEditedParagraphLinks(String content) {
-  
   List<EditedParagraphLink> result = [];
   List<String> _colors = [];
   List<String> _text = [];
@@ -130,13 +146,11 @@ List<EditedParagraphLink> getEditedParagraphLinks(String content) {
   var matches = re.allMatches(content);
   for (final RegExpMatch m in matches) {
     _colors.add(content.substring(m.start, m.end));
-    
   }
   re = RegExp(r'(?<=;">).*?(?=</)');
   matches = re.allMatches(content);
   for (final RegExpMatch m in matches) {
     _text.add(parseHtmlString(content.substring(m.start, m.end)));
-    
   }
 
   for (var i = 0; i < _colors.length; i++) {

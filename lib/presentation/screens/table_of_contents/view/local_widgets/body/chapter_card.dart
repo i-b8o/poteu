@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../chapter/model/chapter_arguments.dart';
+import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart';
 
 class ChapterCard extends StatelessWidget {
   const ChapterCard(
@@ -13,7 +13,6 @@ class ChapterCard extends StatelessWidget {
       : super(key: key);
   final String name, num;
   final int chapterID, chapterOrderNum, totalChapters;
-
 
   @override
   Widget build(BuildContext context) {

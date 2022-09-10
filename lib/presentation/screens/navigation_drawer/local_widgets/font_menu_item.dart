@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/font/font_cubit.dart';
-import 'local_widgets/font_slider.dart';
-import 'local_widgets/menu_sub_Item.dart';
-import 'local_widgets/nav_drawer_menu_item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/cubit/font/font_cubit.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/local_widgets/font_slider.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/local_widgets/menu_sub_Item.dart';
+import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/local_widgets/nav_drawer_menu_item.dart';
 
 class FontMenuItem extends StatelessWidget {
   const FontMenuItem({Key? key, required this.index}) : super(key: key);
@@ -90,7 +90,7 @@ class FontMenuItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Сбросить",
+                                "Сбросить настройки",
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .navigationRailTheme
