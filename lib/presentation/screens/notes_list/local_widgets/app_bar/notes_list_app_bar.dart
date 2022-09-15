@@ -29,7 +29,7 @@ class NotesListAppBar extends StatelessWidget {
           ),
           Text('Заметки', style: Theme.of(context).appBarTheme.titleTextStyle),
           IconButton(
-            onPressed: () {
+            onPressed: () async {
               showModalBottomSheet(
                   backgroundColor: Colors.transparent,
                   isScrollControlled: true,

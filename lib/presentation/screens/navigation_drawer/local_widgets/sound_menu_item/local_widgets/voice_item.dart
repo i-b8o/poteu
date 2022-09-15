@@ -18,7 +18,7 @@ class VoiceItem extends StatelessWidget {
         return _voices == null || state.voice == ''
             ? Container()
             : GestureDetector(
-                onTap: () {
+                onTap: () async {
                   showDialog(
                       context: context,
                       builder: (context) {

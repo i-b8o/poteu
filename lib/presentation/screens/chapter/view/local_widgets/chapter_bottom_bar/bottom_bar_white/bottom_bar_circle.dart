@@ -20,10 +20,10 @@ class BottomBarCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         context.read<ColorsCubit>().setActiveIndex(index);
       },
-      onLongPress: () {
+      onLongPress: () async {
         showDialog(
             context: context,
             builder: (_) => AlertDialog(

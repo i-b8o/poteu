@@ -12,7 +12,7 @@ import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart'
 class ParagraphTable extends StatelessWidget {
   final String content;
   final List<int> ids;
-  void goTo(BuildContext context, int id) {
+  Future<void> goTo(BuildContext context, int id) async {
     int index = ids.indexOf(id);
     if (index > 0) {
       context.read<LinksBloc>().add(EventLinkPressed(index + 1));
@@ -129,8 +129,8 @@ class ParagraphTable extends StatelessWidget {
 
                             return null;
                           },
-                          onTapUrl: (p0) {
-                            // TODO parser change and here
+                          onTapUrl: (p0) async {
+                            // TODO delete
                             String p = p0.split('/#dst')[1];
                             int id = int.tryParse(p) ?? 0;
                             goTo(context, id);

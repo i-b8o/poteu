@@ -14,6 +14,8 @@ import 'package:poteu/presentation/screens/notes_list/bloc/notes/notes_cubit.dar
 import 'package:poteu/presentation/screens/table_of_contents/bloc/table_of_contents/table_of_contents_bloc.dart';
 import 'package:poteu/presentation/screens/app/bloc/app_bloc.dart';
 
+import 'package:poteu/presentation/screens/search/bloc/search/search_cubit.dart';
+
 class App extends StatelessWidget {
   const App({Key? key, required this.regulationRepository}) : super(key: key);
 
@@ -72,6 +74,12 @@ class AppView extends StatelessWidget {
         BlocProvider(
           create: (context) => SpeakCubit(
             regulationRepository: context.read<RegulationRepository>(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => SearchCubit(
+            regulationRepository: context.read<RegulationRepository>(),
+            searchController: TextEditingController(),
           ),
         )
       ],

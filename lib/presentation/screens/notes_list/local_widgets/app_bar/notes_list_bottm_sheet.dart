@@ -12,7 +12,7 @@ class NotesListAppBarBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(alignment: WrapAlignment.center, children: [
       GestureDetector(
-        onTap: () {
+        onTap: () async {
           context.read<NotesCubit>().update(false);
           Navigator.pop(context);
         },
@@ -45,7 +45,7 @@ class NotesListAppBarBottomSheet extends StatelessWidget {
         color: Theme.of(context).bottomAppBarColor,
       ),
       GestureDetector(
-        onTap: () {
+        onTap: () async {
           context.read<NotesCubit>().update(true);
           Navigator.pop(context);
         },

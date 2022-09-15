@@ -45,7 +45,7 @@ class FontMenuItem extends StatelessWidget {
                                         .read<FontCubit>()
                                         .setFontSize(value);
                                   },
-                                  onChangeEnd: (value) => context
+                                  onChangeEnd: (value) async => context
                                       .read<FontCubit>()
                                       .saveFontSize(value),
                                 );
@@ -71,7 +71,7 @@ class FontMenuItem extends StatelessWidget {
                                         .read<FontCubit>()
                                         .setFontWeight(value);
                                   },
-                                  onChangeEnd: (value) => context
+                                  onChangeEnd: (value) async => context
                                       .read<FontCubit>()
                                       .saveFontWeight(value),
                                 );
@@ -79,7 +79,8 @@ class FontMenuItem extends StatelessWidget {
                             )),
                       ),
                       GestureDetector(
-                        onTap: () => context.read<FontCubit>().resetFont(),
+                        onTap: () async =>
+                            context.read<FontCubit>().resetFont(),
                         child: Container(
                           color: Theme.of(context)
                               .navigationRailTheme

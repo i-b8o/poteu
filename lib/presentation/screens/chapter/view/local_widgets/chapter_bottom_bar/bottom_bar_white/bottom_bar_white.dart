@@ -69,7 +69,7 @@ class ColorsCircleBtn extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: Color(0xFFf2f2f2))),
         child: IconButton(
-          onPressed: () {
+          onPressed: () async {
             _pickColor(context);
           },
           icon: Container(
@@ -81,7 +81,7 @@ class ColorsCircleBtn extends StatelessWidget {
         ));
   }
 
-  void _pickColor(BuildContext context) => showDialog(
+  Future<void> _pickColor(BuildContext context) async => showDialog(
       context: context,
       builder: (_) => AlertDialog(
               content: ColorPicker(

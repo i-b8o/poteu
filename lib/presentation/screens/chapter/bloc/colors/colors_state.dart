@@ -12,7 +12,6 @@ class ColorsState extends Equatable {
   });
 
   ColorsState copyWith({
-    bool? quit,
     List<int>? colorsList,
     int? activeIndex,
     int? activeColor,

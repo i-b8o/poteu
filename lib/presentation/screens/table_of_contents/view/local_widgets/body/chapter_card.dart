@@ -17,7 +17,7 @@ class ChapterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         Navigator.pushNamed(context, '/chapter',
             arguments: ChapterArguments(
                 chapterOrderNum: chapterOrderNum,

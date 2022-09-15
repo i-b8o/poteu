@@ -8,7 +8,7 @@ import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/font_
 import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/notes_menu_item.dart';
 import 'package:poteu/presentation/screens/navigation_drawer/local_widgets/sound_menu_item/sound_menu_item.dart';
 
-// TODO add in theme
+// TODO theme
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
 

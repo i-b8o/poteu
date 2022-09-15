@@ -38,12 +38,11 @@ class InitAppBAr extends StatelessWidget {
               Text(title, style: Theme.of(context).appBarTheme.titleTextStyle),
         ),
         IconButton(
-          onPressed: () {
+          onPressed: () async {
             Navigator.pushNamed(
               context,
               '/searchScreen',
             );
-
           },
           icon: Icon(
             Icons.search,

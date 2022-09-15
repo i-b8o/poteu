@@ -18,7 +18,7 @@ class ChapterAppBarPagination extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () {
+          onPressed: () async {
             int? pageNum = int.tryParse(controller.text);
             if (pageNum == 1) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -39,7 +39,7 @@ class ChapterAppBarPagination extends StatelessWidget {
             height: 30,
             width: 30,
             child: TextFormField(
-                onEditingComplete: () {
+                onEditingComplete: () async {
                   FocusScope.of(context).unfocus();
                   int pageNum = int.tryParse(controller.text) ?? 1;
                   if (pageNum > totalChapters) {
@@ -76,14 +76,16 @@ class ChapterAppBarPagination extends StatelessWidget {
                 TextSpan(
                   text: '$totalChapters',
                   style: TextStyle(
-                      color:
-                          Theme.of(context).appBarTheme.titleTextStyle!.color,
+                      color: Theme.of(context).appBarTheme.titleTextStyle ==
+                              null
+                          ? Colors.black
+                          : Theme.of(context).appBarTheme.titleTextStyle!.color,
                       fontWeight: FontWeight.w400),
                 )
               ])),
         ),
         IconButton(
-          onPressed: () {
+          onPressed: () async {
             int? pageNum = int.tryParse(controller.text);
             if (pageNum == null) {
               return;

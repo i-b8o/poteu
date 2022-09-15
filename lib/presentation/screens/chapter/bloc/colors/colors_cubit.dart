@@ -11,12 +11,12 @@ class ColorsCubit extends Cubit<ColorsState> {
         super(ColorsState(
           colorsList: regulationRepository.getColorPickerColors(),
           activeIndex: regulationRepository.getActiveColorIndex(),
-          activeColor: 0xFF8963ff,
+          activeColor: regulationRepository.getActiveColor(),
         )) {
     if (!_regulationRepository.colorPickerKeyExist()) {
       return;
     }
-    emit(state.copyWith(activeColor: state.colorsList[state.activeIndex]));
+    // emit(state.copyWith(activeColor: state.colorsList[state.activeIndex]));
   }
 
   final RegulationRepository _regulationRepository;
@@ -30,24 +30,23 @@ class ColorsCubit extends Cubit<ColorsState> {
     emit(state.copyWith(
       colorsList: state.colorsList,
       activeIndex: index,
-      activeColor: state.colorsList[index],
     ));
   }
 
   void setColor(int color) {
     state.colorsList[state.activeIndex] = color;
-    emit(state.copyWith(
-      colorsList: state.colorsList,
-      activeColor: color,
-    ));
+
+    emit(state.copyWith(colorsList: state.colorsList, activeColor: color));
   }
 
   int getActiveColor() {
-    return state.activeColor;
+    List<int> _colors = state.colorsList;
+    int _activeIndex = state.activeIndex;
+    return _colors[_activeIndex];
   }
 
   void addColor() {
-    List<int> newColorsList = state.colorsList;
+    List<int> newColorsList = List<int>.from(state.colorsList);
     newColorsList..add(0xFF525965);
     emit(state.copyWith(
       colorsList: newColorsList,

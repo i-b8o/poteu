@@ -29,6 +29,6 @@ class SpeakCubit extends Cubit<bool> {
 
   Future<void> stop() async {
     emit(false);
-    await _regulationRepository.stop();
+    await _regulationRepository.ttsStop();
   }
 }

@@ -41,13 +41,13 @@ class SoundMenuItem extends StatelessWidget {
                                 text: '${(state.volume * 100).round()}%',
                                 color: Color(0xFF552cf6),
                                 value: state.volume,
-                                onIconTap: () =>
+                                onIconTap: () async =>
                                     context.read<SoundCubit>().speakRand(),
-                                onChanged: (double value) {
+                                onChanged: (double value) async {
                                   context.read<SoundCubit>().setSettings(
                                       SoundSettings(volume: value));
                                 },
-                                onChangeEnd: (value) => context
+                                onChangeEnd: (value) async => context
                                     .read<SoundCubit>()
                                     .saveVolume(value),
                               );
@@ -70,14 +70,14 @@ class SoundMenuItem extends StatelessWidget {
 
                                 color: Color(0xFF475df9),
                                 value: state.speed,
-                                onIconTap: () =>
+                                onIconTap: () async =>
                                     context.read<SoundCubit>().speakRand(),
-                                onChanged: (double value) {
+                                onChanged: (double value) async {
                                   context
                                       .read<SoundCubit>()
                                       .setSettings(SoundSettings(speed: value));
                                 },
-                                onChangeEnd: (value) =>
+                                onChangeEnd: (value) async =>
                                     context.read<SoundCubit>().saveSpeed(value),
                               );
                             },
@@ -97,14 +97,14 @@ class SoundMenuItem extends StatelessWidget {
                                 text: '${(state.pitch * 100).round()}%',
                                 color: Color(0xFF5aa9f7),
                                 value: state.pitch,
-                                onIconTap: () =>
+                                onIconTap: () async =>
                                     context.read<SoundCubit>().speakRand(),
-                                onChanged: (double value) {
+                                onChanged: (double value) async {
                                   context
                                       .read<SoundCubit>()
                                       .setSettings(SoundSettings(pitch: value));
                                 },
-                                onChangeEnd: (value) =>
+                                onChangeEnd: (value) async =>
                                     context.read<SoundCubit>().savePitch(value),
                               );
                             },

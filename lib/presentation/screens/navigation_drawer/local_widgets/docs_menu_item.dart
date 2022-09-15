@@ -23,7 +23,7 @@ class DocsMenuItem extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(children: [
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       Navigator.popAndPushNamed(
                         context,
                         '/',
@@ -54,7 +54,7 @@ class DocsMenuItem extends StatelessWidget {
                         )),
                   ),
                   GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {

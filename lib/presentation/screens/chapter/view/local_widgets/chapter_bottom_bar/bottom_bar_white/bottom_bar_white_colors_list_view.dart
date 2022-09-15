@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +24,10 @@ class BottomBarWhiteColorsListView extends StatelessWidget {
     return Container(
         height: height * 0.15,
         child: BlocBuilder<ColorsCubit, ColorsState>(
-          buildWhen: (previous, current) => previous != current,
+          buildWhen: (previous, current) =>
+              previous != current ||
+              previous.colorsList[previous.activeIndex] !=
+                  current.colorsList[current.activeIndex],
           builder: (context, state) {
             List<int> _colors = state.colorsList;
             int _activeIndex = state.activeIndex;

@@ -45,7 +45,7 @@ class NotesListPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
-                                onTap: () {
+                                onTap: () async {
                                   List<int> chapterAndParagraphOrderNums =
                                       context
                                           .read<RegulationCubit>()
@@ -128,7 +128,7 @@ class NotesListPage extends StatelessWidget {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () => context
+                                onTap: () async => context
                                     .read<NotesCubit>()
                                     .delete(_bookMark),
                                 child: Icon(

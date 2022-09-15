@@ -42,15 +42,15 @@ class ChapterPageView extends StatelessWidget {
               floatingActionButton: state
                   ? FloatingActionButton(
                       child: Icon(Icons.stop),
-                      onPressed: () {
+                      onPressed: () async {
                         context.read<SpeakCubit>().stop();
                       },
                     )
                   : null,
               resizeToAvoidBottomInset: false,
               appBar: PreferredSize(
-                  preferredSize:
-                      Size.fromHeight(Theme.of(context).appBarTheme.elevation!),
+                  preferredSize: Size.fromHeight(
+                      Theme.of(context).appBarTheme.elevation ?? 74),
                   child: Padding(
                     padding: EdgeInsets.only(
                       top: MediaQuery.of(context).padding.top,

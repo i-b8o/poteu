@@ -24,12 +24,21 @@ class RegulationRepository {
   final SqliteApi _sqliteApi;
   final TTSApi _ttsApi;
 
+  static const List<int> _defaultColorPickerColors = [
+    0xFF525965,
+    0xFFffa200,
+    0xFFff3063,
+    0xFF00d2b0,
+    0xFF8963ff,
+    0xFF007fff,
+  ];
+
 // Regulation API
   String getRegulationAbbreviation() {
     try {
       return _regulationApi.getRegulationAbbreviation();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getRegulationAbbreviation");
       return "";
     }
   }
@@ -38,7 +47,7 @@ class RegulationRepository {
     try {
       return _regulationApi.getTableOfContents();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getTableOfContents");
       return [];
     }
   }
@@ -74,7 +83,7 @@ class RegulationRepository {
       }
       return returnedParagraphs;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getParagraphsByChapterOrderNum");
       return [];
     }
   }
@@ -84,7 +93,7 @@ class RegulationRepository {
       return _regulationApi.getChapterAndParagraphOrderNums(
           chapterID, paragraphID);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getChapterAndParagraphOrderNums");
       return [0, 0];
     }
   }
@@ -93,7 +102,7 @@ class RegulationRepository {
     try {
       return _regulationApi.getChapterNameByOrderNum(chapterOrderNum);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getChapterNameByOrderNum");
       return "";
     }
   }
@@ -102,7 +111,7 @@ class RegulationRepository {
     try {
       return _regulationApi.getChapterNameByID(chapterID);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getChapterNameByID");
       return "";
     }
   }
@@ -111,7 +120,7 @@ class RegulationRepository {
     try {
       return _regulationApi.getRegulationName();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getRegulationName");
       return "";
     }
   }
@@ -120,7 +129,7 @@ class RegulationRepository {
     try {
       return _regulationApi.getGoTo(id);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getGoTo");
       return GoTo(
           regId: Regulation.id, chapterOrderNum: 1, paragraphOrderNum: 1);
     }
@@ -141,7 +150,7 @@ class RegulationRepository {
       }
       return _returnedList;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "search");
       return [];
     }
   }
@@ -151,7 +160,7 @@ class RegulationRepository {
     try {
       return await _spApi.setTheme(value);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setTheme");
     }
   }
 
@@ -159,7 +168,8 @@ class RegulationRepository {
     try {
       return _spApi.getTheme();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getTheme");
+      return false;
     }
   }
 
@@ -168,7 +178,7 @@ class RegulationRepository {
     try {
       return await _spApi.setColorPickerColors(colors);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setColorPickerColors");
     }
   }
 
@@ -176,7 +186,7 @@ class RegulationRepository {
     try {
       return _spApi.colorPickerConfigured();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "colorPickerKeyExist");
       return false;
     }
   }
@@ -185,14 +195,7 @@ class RegulationRepository {
     try {
       List<String>? colorsStr = _spApi.getColorPickerColors();
       if (colorsStr == null) {
-        return [
-          0xFF525965,
-          0xFFffa200,
-          0xFFff3063,
-          0xFF00d2b0,
-          0xFF8963ff,
-          0xFF007fff,
-        ];
+        return _defaultColorPickerColors;
       }
       List<int> _colorsIntList = [];
       for (final _color in colorsStr) {
@@ -203,8 +206,8 @@ class RegulationRepository {
       }
       return _colorsIntList;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
-      return [];
+      sendError(exception, stackTrace, "getColorPickerColors");
+      return _defaultColorPickerColors;
     }
   }
 
@@ -212,7 +215,7 @@ class RegulationRepository {
     try {
       return await _spApi.setActiveColorIndex(index);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setActiveColorIndex");
     }
   }
 
@@ -220,8 +223,19 @@ class RegulationRepository {
     try {
       return _spApi.getActiveColorIndex() ?? 4;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getActiveColorIndex");
       return 4;
+    }
+  }
+
+  int getActiveColor() {
+    try {
+      int _index = getActiveColorIndex();
+      List<int> _colors = getColorPickerColors();
+      return _colors[_index];
+    } catch (exception, stackTrace) {
+      sendError(exception, stackTrace, "getActiveColorIndex");
+      return 0xFFff3063;
     }
   }
 
@@ -230,7 +244,7 @@ class RegulationRepository {
     try {
       return await _sqliteApi.saveParagraph(paragraph);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "saveParagraph");
     }
   }
 
@@ -238,7 +252,7 @@ class RegulationRepository {
     try {
       return await _sqliteApi.deleteParagraph(id);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "deleteParagraph");
     }
   }
 
@@ -246,7 +260,7 @@ class RegulationRepository {
     try {
       return await _sqliteApi.getAllEditedParagraphs();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getAllEditedParagraphs");
       return [];
     }
   }
@@ -257,7 +271,7 @@ class RegulationRepository {
       await _spApi.setPitch(pitch);
       await _ttsApi.setPitch(pitch);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setPitch");
     }
   }
 
@@ -266,7 +280,7 @@ class RegulationRepository {
       await _spApi.setSpeechRate(speechrate);
       await _ttsApi.setSpeechRate(speechrate);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setSpeechRate");
     }
   }
 
@@ -298,7 +312,7 @@ class RegulationRepository {
       }
       return _return;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getSettings");
       return TTSSettings(
           pitch: 0.5, speechRate: 0.5, volume: 0.5, voice: "Пусто");
     }
@@ -310,7 +324,7 @@ class RegulationRepository {
       await _spApi.setVolume(volume);
       await _ttsApi.setVolume(volume);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setVolume");
     }
   }
 
@@ -319,15 +333,15 @@ class RegulationRepository {
       await _spApi.setVoice(voice);
       await _ttsApi.setVoice(voice);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setVoice");
     }
   }
 
-  Future<void> stop() async {
+  Future<void> ttsStop() async {
     try {
       await _ttsApi.stop();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "ttsStop");
     }
   }
 
@@ -335,7 +349,7 @@ class RegulationRepository {
     try {
       await _ttsApi.speak(text);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "speak");
     }
   }
 
@@ -343,7 +357,7 @@ class RegulationRepository {
     try {
       return await _ttsApi.checkRuLanguage();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "checkRuLanguage");
       return false;
     }
   }
@@ -354,7 +368,7 @@ class RegulationRepository {
       // Drop duplicates
       return _voices != null ? _voices.toSet().toList() : _voices;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getVoices");
       return null;
     }
   }
@@ -364,7 +378,7 @@ class RegulationRepository {
     try {
       await _spApi.setFontSize(fontSize);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setFontSize");
     }
   }
 
@@ -372,7 +386,7 @@ class RegulationRepository {
     try {
       return _spApi.getFontSize() ?? 0;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getFontSize");
       return 0.0;
     }
   }
@@ -381,7 +395,7 @@ class RegulationRepository {
     try {
       await _spApi.setFontWeight(fontWeight);
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "setFontWeight");
     }
   }
 
@@ -389,7 +403,7 @@ class RegulationRepository {
     try {
       return _spApi.getFontWeight() ?? 0.375;
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "getFontWeight");
       return 0.1;
     }
   }
@@ -398,7 +412,7 @@ class RegulationRepository {
     try {
       await _spApi.resetFont();
     } catch (exception, stackTrace) {
-      sendError(exception, stackTrace);
+      sendError(exception, stackTrace, "resetFont");
     }
   }
 }

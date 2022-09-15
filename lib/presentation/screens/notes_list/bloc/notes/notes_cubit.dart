@@ -14,6 +14,10 @@ class NotesCubit extends Cubit<NotesState> {
   NotesCubit({required RegulationRepository regulationRepository})
       : _regulationRepository = regulationRepository,
         super(NotesInitial()) {
+    _init();
+  }
+
+  _init() async {
     getEditedParagraphs(false).then((editedParagraphs) {
       _editedParagraphsInfo = editedParagraphs;
       List<Color> _colors = [];

@@ -85,7 +85,7 @@ class ParagraphCard extends StatelessWidget {
                         backgroundColor:
                             Theme.of(context).scaffoldBackgroundColor,
                         title: Text("Редактировать"),
-                        onPressed: () {
+                        onPressed: () async {
                           TextEditingController _controller =
                               TextEditingController();
                           _controller.text = parseHtmlString(paragraph.content);
@@ -140,7 +140,7 @@ class ParagraphCard extends StatelessWidget {
                           backgroundColor:
                               Theme.of(context).scaffoldBackgroundColor,
                           title: Text("Поделиться"),
-                          onPressed: () {
+                          onPressed: () async {
                             share(parseHtmlString(paragraph.content));
                           },
                           trailingIcon: Icon(
@@ -261,7 +261,7 @@ class SelectableTextWidget extends StatelessWidget {
   final bool isSelectable;
   final List<int> ids;
 
-  void goTo(BuildContext context, int id) {
+  Future<void> goTo(BuildContext context, int id) async {
     int index = ids.indexOf(id);
     if (index > 0) {
       context.read<LinksBloc>().add(EventLinkPressed(index + 1));
@@ -293,7 +293,7 @@ class SelectableTextWidget extends StatelessWidget {
           color: Theme.of(context).textTheme.bodyText2!.color,
           fontSize: fontSize,
           fontWeight: FontWeight.values[fwIndex]),
-      onTapUrl: (p0) {
+      onTapUrl: (p0) async {
         int id = int.tryParse(p0) ?? 0;
         goTo(context, id);
         return false;

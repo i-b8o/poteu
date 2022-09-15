@@ -14,7 +14,7 @@ class MenuSubItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         showDialog(
             context: context,
             builder: (context) {

@@ -131,7 +131,6 @@ class _SliderIndicatorPainter extends CustomPainter {
   const _SliderIndicatorPainter(this.position);
   @override
   void paint(Canvas canvas, Size size) {
-    // TODO make like image
     canvas.drawCircle(
         Offset(position, size.height / 2), 12, Paint()..color = Colors.black);
   }

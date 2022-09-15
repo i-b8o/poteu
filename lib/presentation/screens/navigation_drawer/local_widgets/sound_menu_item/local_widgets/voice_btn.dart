@@ -14,7 +14,7 @@ class VoiceBtn extends StatelessWidget {
     return BlocBuilder<SoundCubit, SoundState>(
       builder: (context, state) {
         return GestureDetector(
-          onTap: () => state.speaking
+          onTap: () async => state.speaking
               ? context.read<SoundCubit>().stop()
               : context.read<SoundCubit>().speakRand(),
           child: Container(

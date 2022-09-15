@@ -77,8 +77,7 @@ class FlutterRegulationTheme {
             size: 27,
             color: Colors.white,
           ),
-          foregroundColor: Color(0XFF747E8B)
-          ),
+          foregroundColor: Color(0XFF747E8B)),
       navigationRailTheme: NavigationRailThemeData(
         backgroundColor: Color(0xFF25292a),
         indicatorColor: Color(0xFF654a23),
@@ -86,7 +85,6 @@ class FlutterRegulationTheme {
         selectedIconTheme: IconThemeData(color: Color(0xFFf49315)),
         unselectedLabelTextStyle: TextStyle(color: Color(0xFFc6c7c7)),
         selectedLabelTextStyle: TextStyle(color: Color(0xFFf49315)),
-        
       ),
       drawerTheme: DrawerThemeData(backgroundColor: Color(0xFF25292a)),
       scaffoldBackgroundColor: Color(0xFF0b0b0b),
@@ -94,8 +92,7 @@ class FlutterRegulationTheme {
           headline1: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17.0),
           headline2: TextStyle(
-              color: Color(0xFFfdfdfd), 
-              backgroundColor: Color(0xFF272727)),
+              color: Color(0xFFfdfdfd), backgroundColor: Color(0xFF272727)),
           bodyText1: TextStyle(
             color: Color(0xFF999da5),
             fontWeight: FontWeight.w600,
@@ -105,7 +102,6 @@ class FlutterRegulationTheme {
             fontSize: 15,
           )),
       iconTheme: IconThemeData(size: 20, color: Colors.white),
-      
     );
   }
 }

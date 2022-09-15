@@ -87,7 +87,7 @@ class SoundCubit extends Cubit<SoundState> {
   }
 
   Future<void> stop() async {
-    await _regulationRepository.stop();
+    await _regulationRepository.ttsStop();
     emit(state.copyWith(speaking: false));
   }
 

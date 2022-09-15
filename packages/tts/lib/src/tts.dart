@@ -7,7 +7,11 @@ class TTS extends TTSApi {
       TTSSettings(pitch: 0.5, speechRate: 0.5, volume: 0.5, voice: "");
 
   TTS({required FlutterTts plugin}) : _plugin = plugin {
-    _plugin.awaitSpeakCompletion(true);
+    _init();
+  }
+
+  _init() async {
+    await _plugin.awaitSpeakCompletion(true);
   }
 
   @override
@@ -48,7 +52,7 @@ class TTS extends TTSApi {
   Future<bool> setVoice(String name) async {
     try {
       Map<String, String>? _voice;
-      var voices = await _plugin.getVoices;
+      List voices = await _plugin.getVoices;
       for (var v in voices) {
         if (v['name'] == name) {
           _voice = {"name": name, "locale": v["locale"] ?? "ru-RU"};
