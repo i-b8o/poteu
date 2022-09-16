@@ -16,7 +16,6 @@ class ColorsCubit extends Cubit<ColorsState> {
     if (!_regulationRepository.colorPickerKeyExist()) {
       return;
     }
-    // emit(state.copyWith(activeColor: state.colorsList[state.activeIndex]));
   }
 
   final RegulationRepository _regulationRepository;

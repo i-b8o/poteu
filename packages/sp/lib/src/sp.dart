@@ -29,7 +29,7 @@ class SP extends SPApi {
   }
 
   @override
-  bool? getTheme() {
+  bool getTheme() {
     try {
       return _plugin.getBool(THEME_KEY) ?? false;
     } catch (e) {

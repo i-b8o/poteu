@@ -2,7 +2,7 @@ abstract class SPApi {
   const SPApi();
 // Theme
   setTheme(bool value);
-  bool? getTheme();
+  bool getTheme();
 // Colors
   setColorPickerColors(List<int> colors);
   bool colorPickerConfigured();

@@ -9,10 +9,26 @@ class SpeakCubit extends Cubit<bool> {
   SpeakCubit({required RegulationRepository regulationRepository})
       : _regulationRepository = regulationRepository,
         super(false);
+
   Future<void> speak(String text) async {
     emit(true);
     text = parseHtmlString(text);
-    await _regulationRepository.speak(text).then((value) => emit(false));
+    text = text.replaceAll('-', ' ');
+    List<String> _sentences = text.split(".");
+    List<String> parts = [];
+    for (var i = 0; i < _sentences.length; i++) {
+      if (_sentences[i].split(" ").length > 40) {
+        List<String> _parts = _sentences[i].split(",");
+        parts = parts + _parts;
+      } else {
+        parts.add(_sentences[i]);
+      }
+    }
+
+    for (var i = 0; i < parts.length; i++) {
+      await _regulationRepository.speak(parts[i]);
+    }
+    emit(false);
   }
 
   final RegulationRepository _regulationRepository;
@@ -21,8 +37,7 @@ class SpeakCubit extends Cubit<bool> {
     emit(true);
 
     for (final String paragraph in _editableParagraphs) {
-      String cleanParagraph = paragraph.replaceAll('-', ' ');
-      await speak(cleanParagraph);
+      await speak(paragraph);
     }
     emit(false);
   }

@@ -54,7 +54,6 @@ class ParagraphCardBottomSheet extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Navigator.pop(context);
-
               await context.read<SpeakCubit>().speakChapter(paragraphs);
             },
             child: Container(
