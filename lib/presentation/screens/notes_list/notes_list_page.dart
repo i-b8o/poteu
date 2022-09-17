@@ -28,44 +28,40 @@ class NotesListPage extends StatelessWidget {
                 itemCount: _bookMarks.length,
                 itemBuilder: (context, index) {
                   EditedParagraphInfo _bookMark = _bookMarks[index];
-                  return Card(
-                    elevation: 0,
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    margin: EdgeInsets.zero,
-                    shape: Border(
-                      bottom: BorderSide(
-                          width: 1.0, color: Theme.of(context).shadowColor),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(_width * 0.04, _width * 0.06,
-                          _width * 0.075, _width * 0.05),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              GestureDetector(
-                                onTap: () async {
-                                  List<int> chapterAndParagraphOrderNums =
-                                      context
-                                          .read<RegulationCubit>()
-                                          .getChapterAndParagraphOrderNums(
-                                              _bookMark.chapterID,
-                                              _bookMark.paragraphID);
+                  return GestureDetector(
+                    onTap: () async {
+                      List<int> chapterAndParagraphOrderNums = context
+                          .read<RegulationCubit>()
+                          .getChapterAndParagraphOrderNums(
+                              _bookMark.chapterID, _bookMark.paragraphID);
 
-                                  ChapterArguments args = ChapterArguments(
-                                      chapterOrderNum:
-                                          chapterAndParagraphOrderNums[0],
-                                      totalChapters: context
-                                          .read<TableOfContentsBloc>()
-                                          .chapters
-                                          .length,
-                                      scrollTo:
-                                          chapterAndParagraphOrderNums[1]);
-                                  Navigator.popAndPushNamed(context, '/chapter',
-                                      arguments: args);
-                                },
-                                child: Column(
+                      ChapterArguments args = ChapterArguments(
+                          chapterOrderNum: chapterAndParagraphOrderNums[0],
+                          totalChapters: context
+                              .read<TableOfContentsBloc>()
+                              .chapters
+                              .length,
+                          scrollTo: chapterAndParagraphOrderNums[1]);
+                      Navigator.popAndPushNamed(context, '/chapter',
+                          arguments: args);
+                    },
+                    child: Card(
+                      elevation: 0,
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      margin: EdgeInsets.zero,
+                      shape: Border(
+                        bottom: BorderSide(
+                            width: 1.0, color: Theme.of(context).shadowColor),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(_width * 0.04,
+                            _width * 0.06, _width * 0.075, _width * 0.05),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
                                   children: [
                                     Row(
                                       children: [
@@ -126,22 +122,22 @@ class NotesListPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                              ),
-                              GestureDetector(
-                                onTap: () async => context
-                                    .read<NotesCubit>()
-                                    .delete(_bookMark),
-                                child: Icon(
-                                  Icons.close,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1!
-                                      .color,
+                                GestureDetector(
+                                  onTap: () async => context
+                                      .read<NotesCubit>()
+                                      .delete(_bookMark),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1!
+                                        .color,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
