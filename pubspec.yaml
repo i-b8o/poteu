@@ -29,7 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  focused_menu: ^1.0.5
   shared_preferences: ^2.0.9
   flutter_bloc: ^8.1.1
   bloc: ^8.1.0

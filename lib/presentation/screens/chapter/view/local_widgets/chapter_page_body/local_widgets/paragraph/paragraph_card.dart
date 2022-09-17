@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:focused_menu/focused_menu.dart';
-import 'package:focused_menu/modals.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/paragraph/local_widgets/focused_menu_holder.dart';
+import 'package:poteu/presentation/screens/chapter/view/local_widgets/chapter_page_body/local_widgets/paragraph/local_widgets/modals.dart';
 
 import 'package:poteu/repository/regulation_repository.dart';
 import 'package:poteu/utils/font.dart';
@@ -184,6 +184,7 @@ class ParagraphCard extends StatelessWidget {
                           )),
                     ],
                     onPressed: () {},
+                    bottomBorderColor: Colors.transparent,
                     openWithTap: true,
                     menuWidth: MediaQuery.of(context).size.width * 0.9,
                     blurBackgroundColor: Theme.of(context).focusColor,
