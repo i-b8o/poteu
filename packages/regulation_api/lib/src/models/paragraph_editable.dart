@@ -1,7 +1,7 @@
 class EditableParagraph {
   final int id;
   final int num;
-  final bool isHTML;
+  final List<String> textToSpeech;
   final bool isTable;
   final bool isNFT;
   final String editableParagraphClass;
@@ -12,7 +12,7 @@ class EditableParagraph {
   EditableParagraph( {
     required this.id,
     required this.num,
-    required this.isHTML,
+    required this.textToSpeech,
     required this.isTable,
     required this.isNFT,
     required this.editableParagraphClass,

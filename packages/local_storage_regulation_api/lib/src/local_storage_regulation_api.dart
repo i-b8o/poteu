@@ -120,19 +120,39 @@ class LocalStorageRegulationApi extends RegulationApi {
     }
   }
 
-  GoTo? getGoTo(int id) {
+  GoTo? getGoTo(int? chapterID, paragraphID) {
+    print('Here $chapterID $paragraphID');
     try {
-      List<Link> links = AllLinks.links.where((l) => l.id == id).toList();
-      if (links.isEmpty) {
-        return null;
-      }
-      Link link = links.first;
+      if (paragraphID != null) {
+        
+        List<Link> links =
+            AllLinks.links.where((l) => l.id == paragraphID).toList();
+        if (links.isEmpty) {
+          return null;
+        }
+        Link link = links.first;
 
-      return GoTo(
-        regId: link.rid,
-        chapterOrderNum: link.chapterNum,
-        paragraphOrderNum: link.paragraphNum,
-      );
+
+        return GoTo(
+          regId: link.rid,
+          chapterOrderNum: link.chapterNum,
+          paragraphOrderNum: link.paragraphNum,
+        );
+      }
+      if (chapterID != null) {
+        
+        List<Chapter> chapters =
+            Regulation.chapters.where((c) => c.id == chapterID).toList();
+        if (chapters.length == 0){
+          return null;
+        }
+        return GoTo(
+          regId: Regulation.id,
+          chapterOrderNum: chapters.first.orderNum,
+          paragraphOrderNum: 0,
+        );
+      }
+      return null;
     } catch (e) {
       throw Exception('Links not found: $e');
     }

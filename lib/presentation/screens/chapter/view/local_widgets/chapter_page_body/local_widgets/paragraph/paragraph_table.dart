@@ -12,14 +12,33 @@ import 'package:poteu/presentation/screens/chapter/model/chapter_arguments.dart'
 class ParagraphTable extends StatelessWidget {
   final String content;
   final List<int> ids;
-  Future<void> goTo(BuildContext context, int id) async {
-    int index = ids.indexOf(id);
-    if (index > 0) {
-      context.read<LinksBloc>().add(EventLinkPressed(index + 1));
-      return;
+
+  Future<void> goTo(BuildContext context, String href) async {
+    int? chapterID;
+    int? paragraphID;
+
+    if (href.contains("#")) {
+      // href contains a chapter id and a paragraph id
+      List<String> chapterParagraphIDs = href.split("#");
+      String chapterIDStr = chapterParagraphIDs[0];
+      String paragraphIDStr = chapterParagraphIDs[1];
+
+      paragraphID = int.tryParse(paragraphIDStr) ?? 0;
+      chapterID = int.tryParse(chapterIDStr) ?? 0;
+      // Current page link
+      int index = ids.indexOf(paragraphID);
+      if (index > 0) {
+        context.read<LinksBloc>().add(EventLinkPressed(index + 1));
+        return;
+      }
+    } else {
+      chapterID = int.tryParse(href);
     }
+
+    // Another page
     int totalChapters = context.read<PageViewBloc>().totalChapters;
-    GoTo? _goTo = context.read<ParagraphCardCubit>().goTo(id);
+    GoTo? _goTo =
+        context.read<ParagraphCardCubit>().goTo(chapterID, paragraphID);
     if (_goTo == null) {
       return;
     }
@@ -129,11 +148,8 @@ class ParagraphTable extends StatelessWidget {
 
                             return null;
                           },
-                          onTapUrl: (p0) async {
-                            // TODO delete
-                            String p = p0.split('/#dst')[1];
-                            int id = int.tryParse(p) ?? 0;
-                            goTo(context, id);
+                          onTapUrl: (href) async {
+                            goTo(context, href);
                             return false;
                           },
                         ),

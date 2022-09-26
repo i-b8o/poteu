@@ -33,9 +33,9 @@ class ColorsCubit extends Cubit<ColorsState> {
   }
 
   void setColor(int color) {
-    state.colorsList[state.activeIndex] = color;
-
-    emit(state.copyWith(colorsList: state.colorsList, activeColor: color));
+    List<int> newColorsList = List<int>.from(state.colorsList);
+    newColorsList[state.activeIndex] = color;
+    emit(state.copyWith(colorsList: newColorsList, activeColor: color));
   }
 
   int getActiveColor() {

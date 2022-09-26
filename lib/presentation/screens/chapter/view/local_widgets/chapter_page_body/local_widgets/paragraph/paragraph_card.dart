@@ -52,6 +52,9 @@ class ParagraphCard extends StatelessWidget {
       case 'align_right':
         pClass = ParagraphClass.right;
         break;
+      case 'align_right no-indent':
+        pClass = ParagraphClass.right;
+        break;
       case 'align_center':
         pClass = ParagraphClass.center;
         break;
@@ -162,7 +165,7 @@ class ParagraphCard extends StatelessWidget {
                                 context: context,
                                 builder: (context) {
                                   return ParagraphCardBottomSheet(
-                                    content: paragraph.content,
+                                    content: paragraph.textToSpeech,
                                     paragraphs: _paragraphsContent,
                                   );
                                 });
@@ -262,14 +265,32 @@ class SelectableTextWidget extends StatelessWidget {
   final bool isSelectable;
   final List<int> ids;
 
-  Future<void> goTo(BuildContext context, int id) async {
-    int index = ids.indexOf(id);
-    if (index > 0) {
-      context.read<LinksBloc>().add(EventLinkPressed(index + 1));
-      return;
+  Future<void> goTo(BuildContext context, String href) async {
+    int? chapterID;
+    int? paragraphID;
+
+    if (href.contains("#")) {
+      // href contains a chapter id and a paragraph id
+      List<String> chapterParagraphIDs = href.split("#");
+      String chapterIDStr = chapterParagraphIDs[0];
+      String paragraphIDStr = chapterParagraphIDs[1];
+
+      paragraphID = int.tryParse(paragraphIDStr) ?? 0;
+      chapterID = int.tryParse(chapterIDStr) ?? 0;
+      // Current page link
+      int index = ids.indexOf(paragraphID);
+      if (index > 0) {
+        context.read<LinksBloc>().add(EventLinkPressed(index + 1));
+        return;
+      }
+    } else {
+      chapterID = int.tryParse(href);
     }
+
+    // Another page
     int totalChapters = context.read<PageViewBloc>().totalChapters;
-    GoTo? _goTo = context.read<ParagraphCardCubit>().goTo(id);
+    GoTo? _goTo =
+        context.read<ParagraphCardCubit>().goTo(chapterID, paragraphID);
     if (_goTo == null) {
       return;
     }
@@ -294,9 +315,8 @@ class SelectableTextWidget extends StatelessWidget {
           color: Theme.of(context).textTheme.bodyText2!.color,
           fontSize: fontSize,
           fontWeight: FontWeight.values[fwIndex]),
-      onTapUrl: (p0) async {
-        int id = int.tryParse(p0) ?? 0;
-        goTo(context, id);
+      onTapUrl: (href) async {
+        goTo(context, href);
         return false;
       },
       customStylesBuilder: pClass == ParagraphClass.none

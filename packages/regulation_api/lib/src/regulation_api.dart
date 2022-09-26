@@ -19,5 +19,5 @@ abstract class RegulationApi {
 
   String getRegulationName();
 
-  GoTo? getGoTo(int id);
+  GoTo? getGoTo(int? chapterID, paragraphID);
 }

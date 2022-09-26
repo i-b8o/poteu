@@ -13,5 +13,6 @@ class ParagraphCardCubit extends Cubit<ParagraphCardState> {
 
   final RegulationRepository _regulationRepository;
 
-  GoTo? goTo(int paragraphID) => _regulationRepository.getGoTo(paragraphID);
+  GoTo? goTo(int? chapterID, paragraphID) =>
+      _regulationRepository.getGoTo(chapterID, paragraphID);
 }

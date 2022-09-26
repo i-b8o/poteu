@@ -70,10 +70,10 @@ class RegulationRepository {
             content: p.content,
             id: p.id,
             editableParagraphClass: p.paragraphClass,
-            isHTML: p.isHTML,
             isNFT: p.isNFT,
             isTable: p.isTable,
             edited: 0,
+            textToSpeech: p.textToSpeech,
             num: p.num);
         if (ep.isNotEmpty) {
           newParagraph.content = ep.first.text;
@@ -125,9 +125,9 @@ class RegulationRepository {
     }
   }
 
-  GoTo? getGoTo(int id) {
+  GoTo? getGoTo(int? chapterID, paragraphID) {
     try {
-      return _regulationApi.getGoTo(id);
+      return _regulationApi.getGoTo(chapterID, paragraphID);
     } catch (exception, stackTrace) {
       sendError(exception, stackTrace, "getGoTo");
       return GoTo(

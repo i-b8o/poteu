@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:regulation_api/regulation_api.dart';
 
 import 'package:poteu/repository/regulation_repository.dart';
-import 'package:poteu/utils/text.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -44,12 +43,17 @@ class PageViewBloc extends Bloc<PageViewEvent, PageViewInitState> {
   // String chapterNameByOrderNum(int chapterOrderNum) =>
   //     _regulationRepository.getChapterNameByOrderNum(chapterOrderNum);
 
-  GoTo? goTo(int paragraphID) => _regulationRepository.getGoTo(paragraphID);
+  GoTo? goTo(int? chapterID, paragraphID) =>
+      _regulationRepository.getGoTo(chapterID, paragraphID);
 
   Future<List<String>> paragraphsContent() async {
     List<EditableParagraph> _editableParagraphs = await _regulationRepository
         .getParagraphsByChapterOrderNum(_chapterOrderNum);
-    return _editableParagraphs.map((e) => parseHtmlString(e.content)).toList();
+    List<String> _textSpeechList = [];
+    for (EditableParagraph ep in _editableParagraphs.toList()) {
+      _textSpeechList += ep.textToSpeech;
+    }
+    return _textSpeechList;
   }
 
   set setAppBarOrderNumText(int num) {

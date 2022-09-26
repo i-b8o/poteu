@@ -10,7 +10,7 @@ class ParagraphCardBottomSheet extends StatelessWidget {
     required this.paragraphs,
   }) : super(key: key);
 
-  final String content;
+  final List<String> content;
   final List<String> paragraphs;
 
   @override
@@ -54,7 +54,7 @@ class ParagraphCardBottomSheet extends StatelessWidget {
           GestureDetector(
             onTap: () async {
               Navigator.pop(context);
-              await context.read<SpeakCubit>().speakChapter(paragraphs);
+              await context.read<SpeakCubit>().speak(paragraphs);
             },
             child: Container(
               margin: EdgeInsets.only(bottom: 10),
