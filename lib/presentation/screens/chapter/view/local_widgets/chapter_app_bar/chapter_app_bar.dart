@@ -36,7 +36,20 @@ class ChapterAppBar extends StatelessWidget {
         ChapterAppBarPagination(
             controller: controller,
             pageController: pageController,
-            totalChapters: totalChapters)
+            totalChapters: totalChapters),
+        IconButton(
+          onPressed: () async {
+            Navigator.pushNamed(
+              context,
+              '/searchScreen',
+            );
+          },
+          icon: Icon(
+            Icons.search,
+            size: Theme.of(context).appBarTheme.iconTheme!.size,
+            color: Theme.of(context).appBarTheme.iconTheme!.color,
+          ),
+        ),
       ],
     );
   }

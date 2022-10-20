@@ -7,6 +7,7 @@ import 'package:tts_api/tts_api.dart';
 import 'package:poteu/presentation/screens/search/model/editable_content_paragraph.dart';
 import 'package:poteu/utils/errors.dart';
 import 'package:poteu/utils/text.dart';
+import 'package:poteu/utils/string_extension.dart';
 
 class RegulationRepository {
   const RegulationRepository({
@@ -145,6 +146,9 @@ class RegulationRepository {
         String modifiedContent = removeAllTagsExceptLinks(p.content);
         modifiedContent = modifiedContent.replaceAll(
             query, "<span style='background-color:#FFFF00;'>${query}</span>");
+
+        modifiedContent = modifiedContent.replaceAll(query.capitalize(),
+            "<span style='background-color:#FFFF00;'>${query.capitalize()}</span>");
         _returnedList.add(
             EditableContentParagraph(paragraph: p, content: modifiedContent));
       }
