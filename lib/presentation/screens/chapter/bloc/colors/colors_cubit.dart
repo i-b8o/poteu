@@ -54,8 +54,10 @@ class ColorsCubit extends Cubit<ColorsState> {
   }
 
   void deleteColor(int index) {
+    List<int> newColorsList = List<int>.from(state.colorsList);
+    newColorsList..removeAt(index);
     emit(state.copyWith(
-      colorsList: state.colorsList..removeAt(index),
+      colorsList: newColorsList,
       activeIndex: state.colorsList.length - 1,
     ));
   }
